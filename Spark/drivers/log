@@ -1,0 +1,544 @@
+Linux version 2.6.15-1.2054_FC5 (bhcompile@hs20-bc1-3.build.redhat.com) (gcc version 4.1.0 20060304 (Red Hat 4.1.0-3)) #1 Tue Mar 14 15:48:33 EST 2006
+BIOS-provided physical RAM map:
+ BIOS-e820: 0000000000000000 - 000000000009fc00 (usable)
+ BIOS-e820: 000000000009fc00 - 00000000000a0000 (reserved)
+ BIOS-e820: 00000000000f0000 - 0000000000100000 (reserved)
+ BIOS-e820: 0000000000100000 - 000000003ec1f000 (usable)
+ BIOS-e820: 000000003ec1f000 - 000000003ee20000 (ACPI NVS)
+ BIOS-e820: 000000003ee20000 - 000000003f681000 (usable)
+ BIOS-e820: 000000003f681000 - 000000003f6e9000 (ACPI NVS)
+ BIOS-e820: 000000003f6e9000 - 000000003f6ed000 (usable)
+ BIOS-e820: 000000003f6ed000 - 000000003f6ff000 (ACPI data)
+ BIOS-e820: 000000003f6ff000 - 000000003f700000 (usable)
+119MB HIGHMEM available.
+895MB LOWMEM available.
+found SMP MP-table at 000fe200
+Using x86 segment limits to approximate NX protection
+On node 0 totalpages: 259840
+  DMA zone: 4096 pages, LIFO batch:0
+  DMA32 zone: 0 pages, LIFO batch:0
+  Normal zone: 225279 pages, LIFO batch:31
+  HighMem zone: 30465 pages, LIFO batch:7
+DMI 2.3 present.
+ACPI: RSDP (v000 INTEL                                 ) @ 0x000fe020
+ACPI: RSDT (v001 INTEL  D945GNT  0x000003d4 MSFT 0x01000013) @ 0x3f6fde48
+ACPI: FADT (v001 INTEL  D945GNT  0x000003d4 MSFT 0x01000013) @ 0x3f6fcf10
+ACPI: MADT (v001 INTEL  D945GNT  0x000003d4 MSFT 0x01000013) @ 0x3f6fce10
+ACPI: WDDT (v001 INTEL  D945GNT  0x000003d4 MSFT 0x01000013) @ 0x3f6f7f90
+ACPI: MCFG (v001 INTEL  D945GNT  0x000003d4 MSFT 0x01000013) @ 0x3f6f7f10
+ACPI: ASF! (v032 INTEL  D945GNT  0x000003d4 MSFT 0x01000013) @ 0x3f6fcd10
+ACPI: SSDT (v001 INTEL     CpuPm 0x000003d4 MSFT 0x01000013) @ 0x3f6fdc10
+ACPI: SSDT (v001 INTEL   Cpu0Ist 0x000003d4 MSFT 0x01000013) @ 0x3f6fda10
+ACPI: SSDT (v001 INTEL   Cpu1Ist 0x000003d4 MSFT 0x01000013) @ 0x3f6fd810
+ACPI: SSDT (v001 INTEL   Cpu2Ist 0x000003d4 MSFT 0x01000013) @ 0x3f6fd610
+ACPI: SSDT (v001 INTEL   Cpu3Ist 0x000003d4 MSFT 0x01000013) @ 0x3f6fd410
+ACPI: TCPA (v001 INTEL  TIANO    0x00000002 MSFT 0x01000013) @ 0x3f6dbe10
+ACPI: DSDT (v001 INTEL  D945GNT  0x000003d4 MSFT 0x01000013) @ 0x00000000
+ACPI: PM-Timer IO Port: 0x408
+ACPI: Local APIC address 0xfee00000
+ACPI: LAPIC (acpi_id[0x01] lapic_id[0x00] enabled)
+Processor #0 15:4 APIC version 20
+ACPI: LAPIC (acpi_id[0x02] lapic_id[0x01] enabled)
+Processor #1 15:4 APIC version 20
+WARNING: NR_CPUS limit of 1 reached.  Processor ignored.
+ACPI: LAPIC (acpi_id[0x03] lapic_id[0x82] disabled)
+ACPI: LAPIC (acpi_id[0x04] lapic_id[0x83] disabled)
+ACPI: LAPIC_NMI (acpi_id[0x01] dfl dfl lint[0x1])
+ACPI: LAPIC_NMI (acpi_id[0x02] dfl dfl lint[0x1])
+ACPI: IOAPIC (id[0x02] address[0xfec00000] gsi_base[0])
+IOAPIC[0]: apic_id 2, version 32, address 0xfec00000, GSI 0-23
+ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
+ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)
+ACPI: IRQ0 used by override.
+ACPI: IRQ2 used by override.
+ACPI: IRQ9 used by override.
+Enabling APIC mode:  Flat.  Using 1 I/O APICs
+Using ACPI (MADT) for SMP configuration information
+Allocating PCI resources starting at 40000000 (gap: 3f700000:c0900000)
+Built 1 zonelists
+Kernel command line: ro root=LABEL=/ rhgb quiet
+mapped APIC to ffffd000 (fee00000)
+mapped IOAPIC to ffffc000 (fec00000)
+Enabling fast FPU save and restore... done.
+Enabling unmasked SIMD FPU exception support... done.
+Initializing CPU#0
+CPU 0 irqstacks, hard=c03d4000 soft=c03d3000
+PID hash table entries: 4096 (order: 12, 65536 bytes)
+Detected 3000.552 MHz processor.
+Using pmtmr for high-res timesource
+Console: colour VGA+ 80x25
+Dentry cache hash table entries: 131072 (order: 7, 524288 bytes)
+Inode-cache hash table entries: 65536 (order: 6, 262144 bytes)
+Memory: 1022748k/1039360k available (1914k kernel code, 13292k reserved, 774k data, 176k init, 119320k highmem)
+Checking if this processor honours the WP bit even in supervisor mode... Ok.
+Calibrating delay using timer specific routine.. 6012.56 BogoMIPS (lpj=12025126)
+Security Framework v1.0.0 initialized
+SELinux:  Initializing.
+SELinux:  Starting in permissive mode
+selinux_register_security:  Registering secondary module capability
+Capability LSM initialized as secondary
+Mount-cache hash table entries: 512
+CPU: After generic identify, caps: bfebfbff 20000000 00000000 00000000 0000649d 00000000 00000000
+CPU: After vendor identify, caps: bfebfbff 20000000 00000000 00000000 0000649d 00000000 00000000
+monitor/mwait feature present.
+using mwait in idle threads.
+CPU: Trace cache: 12K uops, L1 D cache: 16K
+CPU: L2 cache: 2048K
+CPU: After all inits, caps: bfebf3ff 20000000 00000000 00000180 0000649d 00000000 00000000
+Intel machine check architecture supported.
+Intel machine check reporting enabled on CPU#0.
+CPU0: Intel P4/Xeon Extended MCE MSRs (24) available
+CPU0: Thermal monitoring enabled
+CPU: Intel(R) Pentium(R) 4 CPU 3.00GHz stepping 03
+Checking 'hlt' instruction... OK.
+ENABLING IO-APIC IRQs
+..TIMER: vector=0x31 apic1=0 pin1=2 apic2=-1 pin2=-1
+checking if image is initramfs... it is
+Freeing initrd memory: 996k freed
+NET: Registered protocol family 16
+ACPI: bus type pci registered
+PCI: Using MMCONFIG
+ACPI: Subsystem revision 20060127
+ACPI: Interpreter enabled
+ACPI: Using IOAPIC for interrupt routing
+ACPI: PCI Root Bridge [PCI0] (0000:00)
+PCI: Probing PCI hardware (bus 00)
+ACPI: Assume root bridge [\_SB_.PCI0] bus is 0
+Boot video device is 0000:00:02.0
+PCI: Ignoring BAR0-3 of IDE controller 0000:00:1f.1
+PCI: Transparent bridge - 0000:00:1e.0
+ACPI: PCI Interrupt Routing Table [\_SB_.PCI0._PRT]
+ACPI: PCI Interrupt Routing Table [\_SB_.PCI0.P32_._PRT]
+ACPI: PCI Interrupt Link [LNKA] (IRQs 3 4 5 7 9 10 *11 12)
+ACPI: PCI Interrupt Link [LNKB] (IRQs 3 4 5 7 9 10 *11 12)
+ACPI: PCI Interrupt Link [LNKC] (IRQs 3 4 5 7 9 10 *11 12)
+ACPI: PCI Interrupt Link [LNKD] (IRQs 3 4 5 7 9 10 *11 12)
+ACPI: PCI Interrupt Link [LNKE] (IRQs 3 4 5 7 9 10 11 12) *0, disabled.
+ACPI: PCI Interrupt Link [LNKF] (IRQs 3 4 5 7 9 10 11 12) *0, disabled.
+ACPI: PCI Interrupt Link [LNKG] (IRQs 3 4 5 7 *9 10 11 12)
+ACPI: PCI Interrupt Link [LNKH] (IRQs 3 4 5 7 9 *10 11 12)
+ACPI: PCI Interrupt Routing Table [\_SB_.PCI0.PEX0._PRT]
+ACPI: PCI Interrupt Routing Table [\_SB_.PCI0.PEX2._PRT]
+ACPI: PCI Interrupt Routing Table [\_SB_.PCI0.PEX3._PRT]
+ACPI: PCI Interrupt Routing Table [\_SB_.PCI0.PEX4._PRT]
+ACPI: PCI Interrupt Routing Table [\_SB_.PCI0.PEX5._PRT]
+Linux Plug and Play Support v0.97 (c) Adam Belay
+pnp: PnP ACPI init
+pnp: PnP ACPI: found 11 devices
+usbcore: registered new driver usbfs
+usbcore: registered new driver hub
+PCI: Using ACPI for IRQ routing
+PCI: If a device doesn't work, try "pci=routeirq".  If it helps, post a report
+pnp: 00:06: ioport range 0x500-0x53f has been reserved
+pnp: 00:06: ioport range 0x400-0x47f could not be reserved
+pnp: 00:06: ioport range 0x680-0x6ff has been reserved
+PCI: Ignore bogus resource 6 [0:0] of 0000:00:02.0
+PCI: Bridge: 0000:00:1c.0
+  IO window: 2000-2fff
+  MEM window: 50100000-501fffff
+  PREFETCH window: disabled.
+PCI: Bridge: 0000:00:1c.2
+  IO window: disabled.
+  MEM window: 50300000-503fffff
+  PREFETCH window: disabled.
+PCI: Bridge: 0000:00:1c.3
+  IO window: disabled.
+  MEM window: 50400000-504fffff
+  PREFETCH window: disabled.
+PCI: Bridge: 0000:00:1c.4
+  IO window: disabled.
+  MEM window: 50500000-505fffff
+  PREFETCH window: disabled.
+PCI: Bridge: 0000:00:1c.5
+  IO window: disabled.
+  MEM window: 50600000-506fffff
+  PREFETCH window: disabled.
+PCI: Bridge: 0000:00:1e.0
+  IO window: 1000-1fff
+  MEM window: 50000000-500fffff
+  PREFETCH window: disabled.
+ACPI: PCI Interrupt 0000:00:1c.0[A] -> GSI 17 (level, low) -> IRQ 16
+PCI: Setting latency timer of device 0000:00:1c.0 to 64
+ACPI: PCI Interrupt 0000:00:1c.2[C] -> GSI 18 (level, low) -> IRQ 17
+PCI: Setting latency timer of device 0000:00:1c.2 to 64
+ACPI: PCI Interrupt 0000:00:1c.3[D] -> GSI 19 (level, low) -> IRQ 18
+PCI: Setting latency timer of device 0000:00:1c.3 to 64
+ACPI: PCI Interrupt 0000:00:1c.4[A] -> GSI 17 (level, low) -> IRQ 16
+PCI: Setting latency timer of device 0000:00:1c.4 to 64
+ACPI: PCI Interrupt 0000:00:1c.5[B] -> GSI 16 (level, low) -> IRQ 19
+PCI: Setting latency timer of device 0000:00:1c.5 to 64
+PCI: Setting latency timer of device 0000:00:1e.0 to 64
+apm: BIOS version 1.2 Flags 0x03 (Driver version 1.16ac)
+apm: overridden by ACPI.
+audit: initializing netlink socket (disabled)
+audit(1230547822.680:1): initialized
+highmem bounce pool size: 64 pages
+Total HugeTLB memory allocated, 0
+VFS: Disk quotas dquot_6.5.1
+Dquot-cache hash table entries: 1024 (order 0, 4096 bytes)
+SELinux:  Registering netfilter hooks
+Initializing Cryptographic API
+ksign: Installing public key data
+Loading keyring
+- Added public key EE596B44DDA71123
+- User ID: Red Hat, Inc. (Kernel Module GPG key)
+io scheduler noop registered
+io scheduler anticipatory registered
+io scheduler deadline registered
+io scheduler cfq registered (default)
+ACPI: PCI Interrupt 0000:00:1c.0[A] -> GSI 17 (level, low) -> IRQ 16
+PCI: Setting latency timer of device 0000:00:1c.0 to 64
+assign_interrupt_mode Found MSI capability
+Allocate Port Service[0000:00:1c.0:pcie00]
+Allocate Port Service[0000:00:1c.0:pcie02]
+Allocate Port Service[0000:00:1c.0:pcie03]
+ACPI: PCI Interrupt 0000:00:1c.2[C] -> GSI 18 (level, low) -> IRQ 17
+PCI: Setting latency timer of device 0000:00:1c.2 to 64
+assign_interrupt_mode Found MSI capability
+Allocate Port Service[0000:00:1c.2:pcie00]
+Allocate Port Service[0000:00:1c.2:pcie02]
+Allocate Port Service[0000:00:1c.2:pcie03]
+ACPI: PCI Interrupt 0000:00:1c.3[D] -> GSI 19 (level, low) -> IRQ 18
+PCI: Setting latency timer of device 0000:00:1c.3 to 64
+assign_interrupt_mode Found MSI capability
+Allocate Port Service[0000:00:1c.3:pcie00]
+Allocate Port Service[0000:00:1c.3:pcie02]
+Allocate Port Service[0000:00:1c.3:pcie03]
+ACPI: PCI Interrupt 0000:00:1c.4[A] -> GSI 17 (level, low) -> IRQ 16
+PCI: Setting latency timer of device 0000:00:1c.4 to 64
+assign_interrupt_mode Found MSI capability
+Allocate Port Service[0000:00:1c.4:pcie00]
+Allocate Port Service[0000:00:1c.4:pcie02]
+Allocate Port Service[0000:00:1c.4:pcie03]
+ACPI: PCI Interrupt 0000:00:1c.5[B] -> GSI 16 (level, low) -> IRQ 19
+PCI: Setting latency timer of device 0000:00:1c.5 to 64
+assign_interrupt_mode Found MSI capability
+Allocate Port Service[0000:00:1c.5:pcie00]
+Allocate Port Service[0000:00:1c.5:pcie02]
+Allocate Port Service[0000:00:1c.5:pcie03]
+pci_hotplug: PCI Hot Plug PCI Core version: 0.5
+isapnp: Scanning for PnP cards...
+isapnp: No Plug & Play device found
+Real Time Clock Driver v1.12ac
+Linux agpgart interface v0.101 (c) Dave Jones
+agpgart: Detected an Intel 945G Chipset.
+agpgart: Detected 7932K stolen memory.
+agpgart: AGP aperture is 256M @ 0x40000000
+PNP: PS/2 Controller [PNP0303:PS2K] at 0x60,0x64 irq 1
+PNP: PS/2 controller doesn't have AUX irq; using default 12
+serio: i8042 AUX port at 0x60,0x64 irq 12
+serio: i8042 KBD port at 0x60,0x64 irq 1
+Serial: 8250/16550 driver $Revision: 1.90 $ 4 ports, IRQ sharing enabled
+serial8250: ttyS0 at I/O 0x3f8 (irq = 4) is a 16550A
+00:09: ttyS0 at I/O 0x3f8 (irq = 4) is a 16550A
+RAMDISK driver initialized: 16 RAM disks of 16384K size 1024 blocksize
+Uniform Multi-Platform E-IDE driver Revision: 7.00alpha2
+ide: Assuming 33MHz system bus speed for PIO modes; override with idebus=xx
+ICH7: IDE controller at PCI slot 0000:00:1f.1
+ACPI: PCI Interrupt 0000:00:1f.1[A] -> GSI 18 (level, low) -> IRQ 17
+ICH7: chipset revision 1
+ICH7: not 100% native mode: will probe irqs later
+    ide0: BM-DMA at 0x30b0-0x30b7, BIOS settings: hda:DMA, hdb:pio
+Probing IDE interface ide0...
+hda: DVD RW DRU-820A, ATAPI CD/DVD-ROM drive
+ide0 at 0x1f0-0x1f7,0x3f6 on irq 14
+Probing IDE interface ide1...
+hda: ATAPI 40X DVD-ROM DVD-R-RAM CD-R/RW drive, 2048kB Cache, UDMA(66)
+Uniform CD-ROM driver Revision: 3.20
+ide-floppy driver 0.99.newide
+usbcore: registered new driver libusual
+usbcore: registered new driver hiddev
+usbcore: registered new driver usbhid
+drivers/usb/input/hid-core.c: v2.6:USB HID core driver
+mice: PS/2 mouse device common for all mice
+md: md driver 0.90.3 MAX_MD_DEVS=256, MD_SB_DISKS=27
+md: bitmap version 4.39
+NET: Registered protocol family 2
+IP route cache hash table entries: 32768 (order: 5, 131072 bytes)
+TCP established hash table entries: 131072 (order: 9, 2097152 bytes)
+TCP bind hash table entries: 65536 (order: 8, 1310720 bytes)
+TCP: Hash tables configured (established 131072 bind 65536)
+TCP reno registered
+TCP bic registered
+Initializing IPsec netlink socket
+NET: Registered protocol family 1
+NET: Registered protocol family 17
+Using IPI Shortcut mode
+ACPI wakeup devices: 
+SLPB  P32 UAR1 PEX0 PEX1 PEX2 PEX3 PEX4 PEX5 UHC1 UHC2 UHC3 UHC4 EHCI AC9M AZAL 
+ACPI: (supports S0 S1 S3 S4 S5)
+Freeing unused kernel memory: 176k freed
+Write protecting the kernel read-only data: 359k
+input: AT Translated Set 2 keyboard as /class/input/input0
+SCSI subsystem initialized
+libata version 1.20 loaded.
+ata_piix 0000:00:1f.2: version 1.05
+ACPI: PCI Interrupt 0000:00:1f.2[B] -> GSI 19 (level, low) -> IRQ 18
+PCI: Setting latency timer of device 0000:00:1f.2 to 64
+ata1: SATA max UDMA/133 cmd 0x30C8 ctl 0x30EE bmdma 0x30A0 irq 18
+ata2: SATA max UDMA/133 cmd 0x30C0 ctl 0x30EA bmdma 0x30A8 irq 18
+ata1: dev 0 cfg 49:2f00 82:346b 83:7d01 84:4023 85:3469 86:3c01 87:4023 88:207f
+ata1: dev 0 ATA-7, max UDMA/133, 488397168 sectors: LBA48
+ata1: dev 0 configured for UDMA/133
+scsi0 : ata_piix
+ATA: abnormal status 0x7F on port 0x30C7
+ata2: disabling port
+scsi1 : ata_piix
+  Vendor: ATA       Model: ST3250820AS       Rev: 3.AA
+  Type:   Direct-Access                      ANSI SCSI revision: 05
+SCSI device sda: 488397168 512-byte hdwr sectors (250059 MB)
+sda: Write Protect is off
+sda: Mode Sense: 00 3a 00 00
+SCSI device sda: drive cache: write back
+SCSI device sda: 488397168 512-byte hdwr sectors (250059 MB)
+sda: Write Protect is off
+sda: Mode Sense: 00 3a 00 00
+SCSI device sda: drive cache: write back
+ sda: sda1 sda2 < sda5 sda6 sda7 sda8 sda9 sda10 sda11 >
+sd 0:0:0:0: Attached scsi disk sda
+kjournald starting.  Commit interval 5 seconds
+EXT3-fs: mounted filesystem with ordered data mode.
+SELinux:  Disabled at runtime.
+SELinux:  Unregistering netfilter hooks
+hw_random hardware driver 1.0.0 loaded
+USB Universal Host Controller Interface driver v2.3
+ACPI: PCI Interrupt 0000:00:1d.0[A] -> GSI 23 (level, low) -> IRQ 20
+PCI: Setting latency timer of device 0000:00:1d.0 to 64
+uhci_hcd 0000:00:1d.0: UHCI Host Controller
+uhci_hcd 0000:00:1d.0: new USB bus registered, assigned bus number 1
+uhci_hcd 0000:00:1d.0: irq 20, io base 0x00003080
+usb usb1: configuration #1 chosen from 1 choice
+hub 1-0:1.0: USB hub found
+hub 1-0:1.0: 2 ports detected
+ACPI: PCI Interrupt 0000:00:1d.1[B] -> GSI 19 (level, low) -> IRQ 18
+PCI: Setting latency timer of device 0000:00:1d.1 to 64
+uhci_hcd 0000:00:1d.1: UHCI Host Controller
+uhci_hcd 0000:00:1d.1: new USB bus registered, assigned bus number 2
+uhci_hcd 0000:00:1d.1: irq 18, io base 0x00003060
+usb usb2: configuration #1 chosen from 1 choice
+hub 2-0:1.0: USB hub found
+hub 2-0:1.0: 2 ports detected
+ACPI: PCI Interrupt 0000:00:1d.2[C] -> GSI 18 (level, low) -> IRQ 17
+PCI: Setting latency timer of device 0000:00:1d.2 to 64
+uhci_hcd 0000:00:1d.2: UHCI Host Controller
+uhci_hcd 0000:00:1d.2: new USB bus registered, assigned bus number 3
+uhci_hcd 0000:00:1d.2: irq 17, io base 0x00003040
+usb usb3: configuration #1 chosen from 1 choice
+hub 3-0:1.0: USB hub found
+hub 3-0:1.0: 2 ports detected
+e1000e: Intel(R) PRO/1000 Network Driver - 0.4.1.7-NAPI
+e1000e: Copyright (c) 1999-2008 Intel Corporation.
+ACPI: PCI Interrupt 0000:00:1d.3[D] -> GSI 16 (level, low) -> IRQ 19
+PCI: Setting latency timer of device 0000:00:1d.3 to 64
+uhci_hcd 0000:00:1d.3: UHCI Host Controller
+uhci_hcd 0000:00:1d.3: new USB bus registered, assigned bus number 4
+uhci_hcd 0000:00:1d.3: irq 19, io base 0x00003020
+usb usb4: configuration #1 chosen from 1 choice
+hub 4-0:1.0: USB hub found
+hub 4-0:1.0: 2 ports detected
+usb 1-2: new low speed USB device using uhci_hcd and address 2
+ACPI: PCI Interrupt 0000:01:00.0[A] -> GSI 16 (level, low) -> IRQ 19
+PCI: Setting latency timer of device 0000:01:00.0 to 64
+0000:01:00.0: : Failed to initialize MSI interrupts.  Falling back to legacy interrupts.
+Deepti :  rhine_init_module
+usb 1-2: configuration #1 chosen from 1 choice
+input: Microsoft Basic Optical Mouse as /class/input/input1
+input: USB HID v1.10 Mouse [Microsoft Basic Optical Mouse] on usb-0000:00:1d.0-2
+0000:01:00.0: eth0: (PCI Express:2.5GB/s:Width x1) 00:13:20:51:6f:0a
+0000:01:00.0: eth0: Intel(R) PRO/1000 Network Connection
+0000:01:00.0: eth0: MAC: 3, PHY: 2, PBA No: ffffff-0ff
+Deepti :  rhine_found1
+ACPI: PCI Interrupt 0000:06:01.0[A] -> GSI 22 (level, low) -> IRQ 21
+PCI: Via IRQ fixup for 0000:06:01.0, from 9 to 5
+Deepti :  rhine_found1 pcid->pin = 1
+Deepti :  rhine_found1 pcid->irq = 21
+VIA Rhine Family Fast Ethernet Adapter Driver Ver. 5.08
+Copyright (c) 2002 VIA Technologies, Inc.
+Deepti :  rhine_found1 626
+Deepti :  rhine_enable_mmio 
+Deepti :  rhine_enable_mmio CFGD = 0x82 
+Deepti :  rhine_wol_reset
+Deepti :  rhine_get_phy_id
+Deepti :  rhine_mii_read
+Deepti :  rhine_disable_mii_auto_poll
+Deepti :  rhine_enable_mii_auto_poll
+Deepti :  rhine_mii_read
+Deepti :  rhine_disable_mii_auto_poll
+Deepti :  rhine_enable_mii_auto_poll
+Deepti :  rhine_soft_reset
+Deepti :  rhine_reload_eeprom
+Deepti :  rhine_enable_mmio 
+Deepti :  rhine_enable_mmio CFGD = 0x82 
+Deepti :  rhine_get_options
+Deepti :  rhine_set_int_opt
+set value of parameter tx_thresh to 0
+Deepti :  rhine_set_int_opt
+set value of parameter rx_thresh to 0
+Deepti :  rhine_set_int_opt
+set value of parameter DMA_length to 0
+Deepti :  rhine_set_int_opt
+set value of parameter RxDescriptors to 16
+Deepti :  rhine_set_int_opt
+set value of parameter TxDescriptors to 16
+Deepti :  rhine_set_int_opt
+set value of parameter VID_setting to 0
+Deepti :  rhine_set_bool_opt
+set parameter enable_tagging to FALSE
+Deepti :  rhine_set_bool_opt
+set parameter rxcsum_offload to TRUE
+Deepti :  rhine_set_bool_opt
+set parameter txcsum_offload to FALSE
+Deepti :  rhine_set_int_opt
+set value of parameter flow_control to 2
+Deepti :  rhine_set_bool_opt
+set parameter IP_byte_align to FALSE
+Deepti :  rhine_set_bool_opt
+set parameter ValPktLen to FALSE
+Deepti :  rhine_set_int_opt
+set value of parameter Media link mode to 0
+Deepti :  rhine_set_int_opt
+set value of parameter Wake On Lan options to 0
+Deepti :  rhine_set_int_opt
+set value of parameter Interrupt service works to 32
+Deepti :  pInfo->hw.sOpts.flags = 0x0
+Deepti :  pInfo->wol_opts = 0x0
+Deepti :  pInfo->hw.flags = 0x4080000
+Deepti :  rhine_get_stats
+Deepti :  rhine_print_info
+Deepti :  get_product_name
+eth1: <NULL>
+eth1: MAC=00:1C:F0:A6:27:E6 IO=0x1000 Mem=0x50004800  IRQ=21 
+Deepti :  rhine_init_module ret = 0
+Intel(R) PRO/1000 Network Driver - version 6.3.9-k4-NAPI
+Copyright (c) 1999-2005 Intel Corporation.
+sd 0:0:0:0: Attached scsi generic sg0 type 0
+ACPI: PCI Interrupt 0000:00:1d.7[A] -> GSI 23 (level, low) -> IRQ 20
+PCI: Setting latency timer of device 0000:00:1d.7 to 64
+ehci_hcd 0000:00:1d.7: EHCI Host Controller
+ehci_hcd 0000:00:1d.7: debug port 1
+PCI: cache line size of 128 is not supported by device 0000:00:1d.7
+ehci_hcd 0000:00:1d.7: new USB bus registered, assigned bus number 5
+ehci_hcd 0000:00:1d.7: irq 20, io mem 0x502c4400
+ehci_hcd 0000:00:1d.7: USB 2.0 started, EHCI 1.00, driver 10 Dec 2004
+usb usb5: configuration #1 chosen from 1 choice
+hub 5-0:1.0: USB hub found
+hub 5-0:1.0: 8 ports detected
+ieee1394: Initialized config rom entry `ip1394'
+ACPI: PCI Interrupt 0000:06:05.0[A] -> GSI 17 (level, low) -> IRQ 16
+ohci1394: fw-host0: OHCI-1394 1.1 (PCI): IRQ=[16]  MMIO=[50004000-500047ff]  Max Packet=[2048]  IR/IT contexts=[4/8]
+usb 1-2: USB disconnect, address 2
+ACPI: PCI Interrupt 0000:00:1b.0[A] -> GSI 22 (level, low) -> IRQ 21
+PCI: Setting latency timer of device 0000:00:1b.0 to 64
+usb 1-2: new low speed USB device using uhci_hcd and address 3
+usb 1-2: configuration #1 chosen from 1 choice
+input: Microsoft Basic Optical Mouse as /class/input/input2
+input: USB HID v1.10 Mouse [Microsoft Basic Optical Mouse] on usb-0000:00:1d.0-2
+Non-volatile memory driver v1.2
+ieee1394: Host added: ID:BUS[0-00:1023]  GUID[009027000191fd53]
+floppy0: no floppy controllers found
+parport: PnPBIOS parport detected.
+parport0: PC-style at 0x378 (0x778), irq 7 [PCSPP,TRISTATE]
+lp0: using parport0 (interrupt-driven).
+lp0: console ready
+ACPI: Power Button (FF) [PWRF]
+ACPI: Sleep Button (CM) [SLPB]
+ibm_acpi: ec object not found
+md: Autodetecting RAID arrays.
+md: autorun ...
+md: ... autorun DONE.
+device-mapper: 4.5.0-ioctl (2005-10-04) initialised: dm-devel@redhat.com
+EXT3 FS on sda9, internal journal
+kjournald starting.  Commit interval 5 seconds
+EXT3 FS on sda8, internal journal
+EXT3-fs: mounted filesystem with ordered data mode.
+kjournald starting.  Commit interval 5 seconds
+EXT3 FS on sda11, internal journal
+EXT3-fs: mounted filesystem with ordered data mode.
+Adding 2152668k swap on /dev/sda10.  Priority:-1 extents:1 across:2152668k
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_netdev_event
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_netdev_event
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Bluetooth: Core ver 2.8
+NET: Registered protocol family 31
+Bluetooth: HCI device and connection manager initialized
+Bluetooth: HCI socket layer initialized
+Bluetooth: L2CAP ver 2.8
+Bluetooth: L2CAP socket layer initialized
+Bluetooth: HIDP (Human Interface Emulation) ver 1.1
+ppdev: user-space parallel port driver
+ppdev0: registered pardevice
+ppdev0: unregistered pardevice
+ppdev1: claim the port first
+ppdev2: claim the port first
+ppdev3: claim the port first
+NET: Registered protocol family 10
+lo: Disabled Privacy Extensions
+ADDRCONF(NETDEV_UP): eth0: link is not ready
+IPv6 over IPv4 tunneling driver
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+[drm] Initialized drm 1.0.1 20051102
+ACPI: PCI Interrupt 0000:00:02.0[A] -> GSI 16 (level, low) -> IRQ 19
+[drm] Initialized i915 1.4.0 20060119 on minor 0
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+0000:01:00.0: eth0: Link is Up 100 Mbps Full Duplex, Flow Control: None
+0000:01:00.0: eth0: 10/100 speed: disabling TSO
+ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+eth0: no IPv6 routers present
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats
+Deepti :  rhine_get_stats

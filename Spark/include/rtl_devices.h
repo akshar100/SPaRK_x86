@@ -1,0 +1,39 @@
+#ifndef __RTL_DEVICES_H__
+#define __RTL_DEVICES_H__
+
+#define MAX_RTL_FILES 128
+
+
+//
+// Define Majors for Devices
+//
+
+
+#define MISC_MAJOR 1
+#define MEM_MAJOR 2
+#define I386_TERMINAL_MAJOR 3
+#define I386_TERMINAL_DEVICE_NAME "term1"
+#define I386_KBD_MAJOR 4
+#define I386_KBD_DEVICE_NAME "keyb1"
+#define I386_SERIAL_MOUSE_MAJOR 5
+#define I386_SERIAL_MOUSE_DEVICE_NAME "mouse1"
+#define I386_PS2_MOUSE_MAJOR 6
+#define XTRATUM_TERMINAL_MAJOR 7
+#define XTRATUM_TERMINAL_DEVICE_NAME "term2"
+#define XTRATUM_MOUSE_MAJOR 8
+#define XTRATUM_MOUSE_DEVICE_NAME "mouse2"
+#define XTRATUM_KBD_MAJOR 9
+#define XTRATUM_KBD_DEVICE_NAME "mouse2"
+#define SA1100_SERIAL_MAJOR 10
+//PCI
+#define I386_PCI1710_MAJOR 11
+#define I386_PCI1710_DEVICE_NAME "pci1710"
+#define I386_PCI82573v_MAJOR 12
+#define I386_PCI82573v_DEVICE_NAME "pci82573v"
+#define I386_PCIVIA_MAJOR 13
+#define I386_PCIVIA_DEVICE_NAME "pciVIAeth"
+//PCI ~
+
+
+#endif //__RTL_DEVICES_H__
+

@@ -1,0 +1,4 @@
+for i in ifsli_? ; do \
+	echo $i; \
+	(awk "/./ { printf(\"%02.7f-- %s\\n\", \$3*100/\$2, \$0) }" $i | cut -f1 -d"-") > ${i}_proc ; \
+done

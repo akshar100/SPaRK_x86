@@ -1,0 +1,107 @@
+
+TLSF Memory Storage allocator implementation.
+Version 1.3.1 April 2004
+
+Authors: Miguel Masmano, Ismael Ripoll, Alfons Crespo & Jorge Real.
+Copyright UPVLC, OCERA Consortium.
+
+This code is released using a dual license strategy: GPL/LGPL
+You can choose the license that better fits your requirements.
+
+Released under the terms of the GNU General Public License Version 2.0
+Released under the terms of the GNU Lesser General Public License Version 2.1
+
+This component provides basic memory allocation functions:
+malloc and free, as defined in the standard "C" library.
+
+This allocator was designed to provide real-time performance, that is:
+1.- Bounded time malloc and free.
+2.- Fast response time.
+3.- Efficient memory management, that is low fragmentation.
+
+
+The worst response time for both malloc and free is O(1).
+
+
+
+How to use it:
+
+This code is prepared to be used as a stand-alone code that can be
+linked with a regular application or it can be compiled to be a Linux
+module (which required the BigPhysicalArea patch).  Initially the
+module was designed to work jointly with RTLinux-GPL but can be used
+as a stand alone Linux module.
+
+
+When compiled as a regular linux process the API is:
+
+/* INIT AND DESTROY */
+This function has to be called before the any malloc call:
+int init_memory_pool(max_fli, sli, block_size, ptr)
+	max_fli  : TLSF  can  calculate  a optimal  fli  from a  given
+                   block_size (using max_fli = 0), however since user can add new free blocks
+	           to the TLSF structure through the add_new_block() function a max_fli can be defined.
+	           Possible values are:
+	           0 -> the function calculates the optimal max_fli.
+	           10 -> 1024 Kbytes * 4
+		   ..
+	           30 -> 1 Gbytes * 4
+
+	sli  : Second Level Index. 1 < sli < 5
+		The biggest, the less fragmentation.
+		3 or 4 are fair numbers.
+	block_size : size of the initial memory pool (in Kb).
+	ptr  : Pointer to the memory pool.
+
+Sice it is possible to work with several pools, this function
+associates the default pool with the malloc and free functions.
+void associate_buffer(ptr)
+	ptr  : Pointer to a initialised pool.
+
+void destroy_memory_pool(ptr)
+	ptr  : Pointer to a initialised pool.
+
+/* Request and release */
+void *rtl_malloc(size)
+	size : Request a block of "size" bytes, and returns a pointer
+	to the start of the allocated block. NULL if not block can be
+	allocated.
+
+void rtl_free(ptr)
+	ptr  : Pointer to a previously allocated block.
+
+void *realloc (ptr, new_len);
+	ptr : Pointer to a previously allocated block.
+	new_len : New length for the previously allocated block.
+
+void *calloc (size_t nelem, size_t elem_size);
+	nelem : number of elements of the matrix.
+	elem_size: size of each element.
+
+It  is possible change  the standard  allocation/deallocation function
+name modifing following macros (which are included in the rtl_malloc.h
+file)
+
+#define MALLOC_FUNCTION rtl_malloc
+#define MALLOC_FUNCTION_EX rtl_malloc_ex
+
+#define REALLOC_FUNCTION rtl_realloc
+#define REALLOC_FUNCTION_EX rtl_realloc_ex
+
+#define CALLOC_FUNCTION rtl_calloc
+#define CALLOC_FUNCTION_EX rtl_calloc_ex
+
+#define FREE_FUNCTION rtl_free
+#define FREE_FUNCTION_EX rtl_free_ex
+
+This is to avoid name collision with the standard C lib.
+
+
+To work with more than one pool you have to use the "ex"tended
+functions: rtl_malloc_ex(size, pool) rtl_free_ex(ptr, pool) Which are
+used like the standard malloc() and free() but with an extra argument
+which is the pointer to the memory pool from which the memory should
+be allocated or released.
+
+This work has been supported by the European Commision project:
+IST-2001-35102(OCERA) http://www.ocera.org.

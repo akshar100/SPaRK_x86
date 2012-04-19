@@ -1,0 +1,9 @@
+arch/i386/kernel/hypercall.c:asmlinkage long spark_print(char *str)
+arch/i386/kernel/hypercallEntry.s:	.long spark_print			
+arch/i386/kernel/hypercallEntry.S:	.long SYMBOL_NAME(spark_print)			/* 1  */
+
+
+
+ 
+:q
+:spark_pci1710_analog_out

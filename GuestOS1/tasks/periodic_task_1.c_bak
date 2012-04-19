@@ -1,0 +1,46 @@
+#include <rtl_conf.h>
+#include <time.h>
+#include <pthread.h>
+#include "systemcall_lib.c"
+
+
+#include <uip/uipopt.h>
+#include <uip/uip_arp.h>
+//Add here any other header files required by task.
+
+#define DRIVER_STACK_BAD     0
+#define DRIVER_STACK_GOOD    1
+
+
+int stack_task1[1024];
+
+unsigned char myip[]     = {0x0a, 0x81, 0x0b, 0xa3};
+unsigned char hostaddr[] = {0x0a, 0x81, 0x0b, 0xa3};
+unsigned char draddr[]   = {0x0a, 0x81, 0x0b, 0xa3};
+unsigned char netmask[]  = {0xFF, 0xFF, 0x80, 0x00};
+
+struct spark_timer periodic_timer;
+struct spark_timer arp_timer;
+
+
+void *task1(void)
+{
+    unsigned long now_time[2];
+
+    //Give period of task in nanosec
+    sys_print("GuestOS1:Task1\n");
+    pthread_make_periodic_np (8000);
+    //pthread_make_periodic_np(8);
+    while(1)
+    {
+        //Make task wait till next period
+        pthread_wait_np ();
+        sys_print("GuestOS1:Task1\n");
+        //sys_getTime(now_time);
+        //sys_printLong(now_time[0]);   
+        //sys_printLong(now_time[1]);   
+
+        //Add additional operations to be performed by task in its one execution here
+    }
+    return 0;
+}

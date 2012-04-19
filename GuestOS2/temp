@@ -1,0 +1,1027 @@
+459c459
+<     13d2:	e8 79 13 00 00       	call   2750 <init_tasks>
+---
+>     13d2:	e8 89 13 00 00       	call   2760 <init_tasks>
+732c732
+<     1781:	e8 da 11 00 00       	call   2960 <memset>
+---
+>     1781:	e8 ea 11 00 00       	call   2970 <memset>
+809c809
+<     1891:	e8 ca 10 00 00       	call   2960 <memset>
+---
+>     1891:	e8 da 10 00 00       	call   2970 <memset>
+844c844
+<     1915:	e8 46 10 00 00       	call   2960 <memset>
+---
+>     1915:	e8 56 10 00 00       	call   2970 <memset>
+922c922
+<     19ea:	e8 71 0f 00 00       	call   2960 <memset>
+---
+>     19ea:	e8 81 0f 00 00       	call   2970 <memset>
+978c978
+<     1ac5:	e8 96 0e 00 00       	call   2960 <memset>
+---
+>     1ac5:	e8 a6 0e 00 00       	call   2970 <memset>
+1525c1525
+<     21a6:	e8 15 07 00 00       	call   28c0 <init_cq_monitor>
+---
+>     21a6:	e8 25 07 00 00       	call   28d0 <init_cq_monitor>
+1590,1603c1590,1601
+<     22b8:	8b 5c 24 10          	mov    0x10(%esp),%ebx
+<     22bc:	89 44 24 28          	mov    %eax,0x28(%esp)
+<     22c0:	8b 74 24 14          	mov    0x14(%esp),%esi
+<     22c4:	c7 44 24 24 60 32 00 	movl   $0x3260,0x24(%esp)
+<     22cb:	00 
+<     22cc:	8b 7c 24 18          	mov    0x18(%esp),%edi
+<     22d0:	c7 44 24 20 01 02 02 	movl   $0x1020201,0x20(%esp)
+<     22d7:	01 
+<     22d8:	83 c4 1c             	add    $0x1c,%esp
+<     22db:	e9 80 f0 ff ff       	jmp    1360 <spark_send>
+< 
+< 000022e0 <sys_print_k>:
+<     22e0:	e9 6b ed ff ff       	jmp    1050 <spark_print>
+<     22e5:	8d 74 26 00          	lea    0x0(%esi),%esi
+---
+>     22b8:	89 44 24 08          	mov    %eax,0x8(%esp)
+>     22bc:	c7 44 24 04 60 32 00 	movl   $0x3260,0x4(%esp)
+>     22c3:	00 
+>     22c4:	c7 04 24 01 02 02 01 	movl   $0x1020201,(%esp)
+>     22cb:	e8 90 f0 ff ff       	call   1360 <spark_send>
+>     22d0:	89 f0                	mov    %esi,%eax
+>     22d2:	8b 5c 24 10          	mov    0x10(%esp),%ebx
+>     22d6:	8b 74 24 14          	mov    0x14(%esp),%esi
+>     22da:	8b 7c 24 18          	mov    0x18(%esp),%edi
+>     22de:	83 c4 1c             	add    $0x1c,%esp
+>     22e1:	c3                   	ret    
+>     22e2:	8d b4 26 00 00 00 00 	lea    0x0(%esi),%esi
+1606,1715c1604,1714
+< 000022f0 <sys_sock_listen_k>:
+<     22f0:	53                   	push   %ebx
+<     22f1:	83 ec 28             	sub    $0x28,%esp
+<     22f4:	8b 5c 24 30          	mov    0x30(%esp),%ebx
+<     22f8:	f7 c3 00 00 ff ff    	test   $0xffff0000,%ebx
+<     22fe:	75 04                	jne    2304 <sys_sock_listen_k+0x14>
+<     2300:	85 db                	test   %ebx,%ebx
+<     2302:	75 0c                	jne    2310 <sys_sock_listen_k+0x20>
+<     2304:	83 c4 28             	add    $0x28,%esp
+<     2307:	31 c0                	xor    %eax,%eax
+<     2309:	5b                   	pop    %ebx
+<     230a:	c3                   	ret    
+<     230b:	90                   	nop    
+<     230c:	8d 74 26 00          	lea    0x0(%esi),%esi
+<     2310:	a1 00 30 00 00       	mov    0x3000,%eax
+<     2315:	83 f8 03             	cmp    $0x3,%eax
+<     2318:	74 ea                	je     2304 <sys_sock_listen_k+0x14>
+<     231a:	6b c0 2c             	imul   $0x2c,%eax,%eax
+<     231d:	89 5c 24 24          	mov    %ebx,0x24(%esp)
+<     2321:	89 1c 24             	mov    %ebx,(%esp)
+<     2324:	c7 44 24 1c 11 11 00 	movl   $0x1111,0x1c(%esp)
+<     232b:	00 
+<     232c:	c7 44 24 20 01 00 00 	movl   $0x1,0x20(%esp)
+<     2333:	00 
+<     2334:	89 98 20 34 00 00    	mov    %ebx,0x3420(%eax)
+<     233a:	e8 21 ee ff ff       	call   1160 <spark_printLong>
+<     233f:	6b 05 00 30 00 00 2c 	imul   $0x2c,0x3000,%eax
+<     2346:	05 28 34 00 00       	add    $0x3428,%eax
+<     234b:	89 04 24             	mov    %eax,(%esp)
+<     234e:	e8 6d 05 00 00       	call   28c0 <init_cq_monitor>
+<     2353:	8d 44 24 1c          	lea    0x1c(%esp),%eax
+<     2357:	c7 44 24 08 0c 00 00 	movl   $0xc,0x8(%esp)
+<     235e:	00 
+<     235f:	89 44 24 04          	mov    %eax,0x4(%esp)
+<     2363:	c7 04 24 01 02 02 01 	movl   $0x1020201,(%esp)
+<     236a:	83 05 00 30 00 00 01 	addl   $0x1,0x3000
+<     2371:	e8 ea ef ff ff       	call   1360 <spark_send>
+<     2376:	89 d8                	mov    %ebx,%eax
+<     2378:	83 c4 28             	add    $0x28,%esp
+<     237b:	5b                   	pop    %ebx
+<     237c:	c3                   	ret    
+<     237d:	8d 76 00             	lea    0x0(%esi),%esi
+< 
+< 00002380 <sys_printLong_k>:
+<     2380:	e9 db ed ff ff       	jmp    1160 <spark_printLong>
+<     2385:	8d 74 26 00          	lea    0x0(%esi),%esi
+<     2389:	8d bc 27 00 00 00 00 	lea    0x0(%edi),%edi
+< 
+< 00002390 <sys_sock_init_k>:
+<     2390:	83 ec 0c             	sub    $0xc,%esp
+<     2393:	c7 44 24 04 00 02 00 	movl   $0x200,0x4(%esp)
+<     239a:	00 
+<     239b:	c7 04 24 01 02 02 01 	movl   $0x1020201,(%esp)
+<     23a2:	e8 89 ef ff ff       	call   1330 <spark_registerMQ>
+<     23a7:	c7 44 24 04 00 02 00 	movl   $0x200,0x4(%esp)
+<     23ae:	00 
+<     23af:	c7 04 24 02 01 01 02 	movl   $0x2010102,(%esp)
+<     23b6:	e8 75 ef ff ff       	call   1330 <spark_registerMQ>
+<     23bb:	31 c0                	xor    %eax,%eax
+<     23bd:	83 c4 0c             	add    $0xc,%esp
+<     23c0:	c3                   	ret    
+<     23c1:	eb 0d                	jmp    23d0 <sys_registerMQ_k>
+<     23c3:	90                   	nop    
+<     23c4:	90                   	nop    
+<     23c5:	90                   	nop    
+<     23c6:	90                   	nop    
+<     23c7:	90                   	nop    
+<     23c8:	90                   	nop    
+<     23c9:	90                   	nop    
+<     23ca:	90                   	nop    
+<     23cb:	90                   	nop    
+<     23cc:	90                   	nop    
+<     23cd:	90                   	nop    
+<     23ce:	90                   	nop    
+<     23cf:	90                   	nop    
+< 
+< 000023d0 <sys_registerMQ_k>:
+<     23d0:	e9 5b ef ff ff       	jmp    1330 <spark_registerMQ>
+<     23d5:	8d 74 26 00          	lea    0x0(%esi),%esi
+<     23d9:	8d bc 27 00 00 00 00 	lea    0x0(%edi),%edi
+< 
+< 000023e0 <sys_getTime_k>:
+<     23e0:	83 ec 0c             	sub    $0xc,%esp
+<     23e3:	e8 28 fc ff ff       	call   2010 <gethrtime>
+<     23e8:	8b 4c 24 10          	mov    0x10(%esp),%ecx
+<     23ec:	89 01                	mov    %eax,(%ecx)
+<     23ee:	31 c0                	xor    %eax,%eax
+<     23f0:	83 c4 0c             	add    $0xc,%esp
+<     23f3:	c3                   	ret    
+<     23f4:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+<     23fa:	8d bf 00 00 00 00    	lea    0x0(%edi),%edi
+< 
+< 00002400 <sys_receiveMQ_k>:
+<     2400:	e9 8b ef ff ff       	jmp    1390 <spark_receive>
+<     2405:	8d 74 26 00          	lea    0x0(%esi),%esi
+<     2409:	8d bc 27 00 00 00 00 	lea    0x0(%edi),%edi
+< 
+< 00002410 <sys_sock_tcp_recv_k>:
+<     2410:	83 ec 3c             	sub    $0x3c,%esp
+<     2413:	8b 44 24 40          	mov    0x40(%esp),%eax
+<     2417:	3b 05 20 34 00 00    	cmp    0x3420,%eax
+<     241d:	89 5c 24 2c          	mov    %ebx,0x2c(%esp)
+<     2421:	89 74 24 30          	mov    %esi,0x30(%esp)
+<     2425:	89 7c 24 34          	mov    %edi,0x34(%esp)
+<     2429:	89 6c 24 38          	mov    %ebp,0x38(%esp)
+<     242d:	c7 44 24 14 00 00 00 	movl   $0x0,0x14(%esp)
+<     2434:	00 
+<     2435:	74 3b                	je     2472 <sys_sock_tcp_recv_k+0x62>
+<     2437:	3b 05 4c 34 00 00    	cmp    0x344c,%eax
+<     243d:	c7 44 24 14 01 00 00 	movl   $0x1,0x14(%esp)
+---
+> 000022f0 <sys_print_k>:
+>     22f0:	e9 5b ed ff ff       	jmp    1050 <spark_print>
+>     22f5:	8d 74 26 00          	lea    0x0(%esi),%esi
+>     22f9:	8d bc 27 00 00 00 00 	lea    0x0(%edi),%edi
+> 
+> 00002300 <sys_sock_listen_k>:
+>     2300:	53                   	push   %ebx
+>     2301:	83 ec 28             	sub    $0x28,%esp
+>     2304:	8b 5c 24 30          	mov    0x30(%esp),%ebx
+>     2308:	f7 c3 00 00 ff ff    	test   $0xffff0000,%ebx
+>     230e:	75 04                	jne    2314 <sys_sock_listen_k+0x14>
+>     2310:	85 db                	test   %ebx,%ebx
+>     2312:	75 0c                	jne    2320 <sys_sock_listen_k+0x20>
+>     2314:	83 c4 28             	add    $0x28,%esp
+>     2317:	31 c0                	xor    %eax,%eax
+>     2319:	5b                   	pop    %ebx
+>     231a:	c3                   	ret    
+>     231b:	90                   	nop    
+>     231c:	8d 74 26 00          	lea    0x0(%esi),%esi
+>     2320:	a1 00 30 00 00       	mov    0x3000,%eax
+>     2325:	83 f8 03             	cmp    $0x3,%eax
+>     2328:	74 ea                	je     2314 <sys_sock_listen_k+0x14>
+>     232a:	6b c0 2c             	imul   $0x2c,%eax,%eax
+>     232d:	89 5c 24 24          	mov    %ebx,0x24(%esp)
+>     2331:	89 1c 24             	mov    %ebx,(%esp)
+>     2334:	c7 44 24 1c 11 11 00 	movl   $0x1111,0x1c(%esp)
+>     233b:	00 
+>     233c:	c7 44 24 20 01 00 00 	movl   $0x1,0x20(%esp)
+>     2343:	00 
+>     2344:	89 98 20 34 00 00    	mov    %ebx,0x3420(%eax)
+>     234a:	e8 11 ee ff ff       	call   1160 <spark_printLong>
+>     234f:	6b 05 00 30 00 00 2c 	imul   $0x2c,0x3000,%eax
+>     2356:	05 28 34 00 00       	add    $0x3428,%eax
+>     235b:	89 04 24             	mov    %eax,(%esp)
+>     235e:	e8 6d 05 00 00       	call   28d0 <init_cq_monitor>
+>     2363:	8d 44 24 1c          	lea    0x1c(%esp),%eax
+>     2367:	c7 44 24 08 0c 00 00 	movl   $0xc,0x8(%esp)
+>     236e:	00 
+>     236f:	89 44 24 04          	mov    %eax,0x4(%esp)
+>     2373:	c7 04 24 01 02 02 01 	movl   $0x1020201,(%esp)
+>     237a:	83 05 00 30 00 00 01 	addl   $0x1,0x3000
+>     2381:	e8 da ef ff ff       	call   1360 <spark_send>
+>     2386:	89 d8                	mov    %ebx,%eax
+>     2388:	83 c4 28             	add    $0x28,%esp
+>     238b:	5b                   	pop    %ebx
+>     238c:	c3                   	ret    
+>     238d:	8d 76 00             	lea    0x0(%esi),%esi
+> 
+> 00002390 <sys_printLong_k>:
+>     2390:	e9 cb ed ff ff       	jmp    1160 <spark_printLong>
+>     2395:	8d 74 26 00          	lea    0x0(%esi),%esi
+>     2399:	8d bc 27 00 00 00 00 	lea    0x0(%edi),%edi
+> 
+> 000023a0 <sys_sock_init_k>:
+>     23a0:	83 ec 0c             	sub    $0xc,%esp
+>     23a3:	c7 44 24 04 00 02 00 	movl   $0x200,0x4(%esp)
+>     23aa:	00 
+>     23ab:	c7 04 24 01 02 02 01 	movl   $0x1020201,(%esp)
+>     23b2:	e8 79 ef ff ff       	call   1330 <spark_registerMQ>
+>     23b7:	c7 44 24 04 00 02 00 	movl   $0x200,0x4(%esp)
+>     23be:	00 
+>     23bf:	c7 04 24 02 01 01 02 	movl   $0x2010102,(%esp)
+>     23c6:	e8 65 ef ff ff       	call   1330 <spark_registerMQ>
+>     23cb:	31 c0                	xor    %eax,%eax
+>     23cd:	83 c4 0c             	add    $0xc,%esp
+>     23d0:	c3                   	ret    
+>     23d1:	eb 0d                	jmp    23e0 <sys_registerMQ_k>
+>     23d3:	90                   	nop    
+>     23d4:	90                   	nop    
+>     23d5:	90                   	nop    
+>     23d6:	90                   	nop    
+>     23d7:	90                   	nop    
+>     23d8:	90                   	nop    
+>     23d9:	90                   	nop    
+>     23da:	90                   	nop    
+>     23db:	90                   	nop    
+>     23dc:	90                   	nop    
+>     23dd:	90                   	nop    
+>     23de:	90                   	nop    
+>     23df:	90                   	nop    
+> 
+> 000023e0 <sys_registerMQ_k>:
+>     23e0:	e9 4b ef ff ff       	jmp    1330 <spark_registerMQ>
+>     23e5:	8d 74 26 00          	lea    0x0(%esi),%esi
+>     23e9:	8d bc 27 00 00 00 00 	lea    0x0(%edi),%edi
+> 
+> 000023f0 <sys_getTime_k>:
+>     23f0:	83 ec 0c             	sub    $0xc,%esp
+>     23f3:	e8 18 fc ff ff       	call   2010 <gethrtime>
+>     23f8:	8b 4c 24 10          	mov    0x10(%esp),%ecx
+>     23fc:	89 01                	mov    %eax,(%ecx)
+>     23fe:	31 c0                	xor    %eax,%eax
+>     2400:	83 c4 0c             	add    $0xc,%esp
+>     2403:	c3                   	ret    
+>     2404:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+>     240a:	8d bf 00 00 00 00    	lea    0x0(%edi),%edi
+> 
+> 00002410 <sys_receiveMQ_k>:
+>     2410:	e9 7b ef ff ff       	jmp    1390 <spark_receive>
+>     2415:	8d 74 26 00          	lea    0x0(%esi),%esi
+>     2419:	8d bc 27 00 00 00 00 	lea    0x0(%edi),%edi
+> 
+> 00002420 <sys_sock_tcp_recv_k>:
+>     2420:	83 ec 3c             	sub    $0x3c,%esp
+>     2423:	8b 44 24 40          	mov    0x40(%esp),%eax
+>     2427:	3b 05 20 34 00 00    	cmp    0x3420,%eax
+>     242d:	89 5c 24 2c          	mov    %ebx,0x2c(%esp)
+>     2431:	89 74 24 30          	mov    %esi,0x30(%esp)
+>     2435:	89 7c 24 34          	mov    %edi,0x34(%esp)
+>     2439:	89 6c 24 38          	mov    %ebp,0x38(%esp)
+>     243d:	c7 44 24 14 00 00 00 	movl   $0x0,0x14(%esp)
+1717,1753c1716,1752
+<     2445:	74 2b                	je     2472 <sys_sock_tcp_recv_k+0x62>
+<     2447:	3b 05 78 34 00 00    	cmp    0x3478,%eax
+<     244d:	ba ef ef 00 00       	mov    $0xefef,%edx
+<     2452:	74 16                	je     246a <sys_sock_tcp_recv_k+0x5a>
+<     2454:	8b 5c 24 2c          	mov    0x2c(%esp),%ebx
+<     2458:	89 d0                	mov    %edx,%eax
+<     245a:	8b 74 24 30          	mov    0x30(%esp),%esi
+<     245e:	8b 7c 24 34          	mov    0x34(%esp),%edi
+<     2462:	8b 6c 24 38          	mov    0x38(%esp),%ebp
+<     2466:	83 c4 3c             	add    $0x3c,%esp
+<     2469:	c3                   	ret    
+<     246a:	c7 44 24 14 02 00 00 	movl   $0x2,0x14(%esp)
+<     2471:	00 
+<     2472:	8b 5c 24 48          	mov    0x48(%esp),%ebx
+<     2476:	c7 44 24 04 40 33 00 	movl   $0x3340,0x4(%esp)
+<     247d:	00 
+<     247e:	c7 04 24 02 01 01 02 	movl   $0x2010102,(%esp)
+<     2485:	83 c3 10             	add    $0x10,%ebx
+<     2488:	89 5c 24 08          	mov    %ebx,0x8(%esp)
+<     248c:	e8 6f ff ff ff       	call   2400 <sys_receiveMQ_k>
+<     2491:	85 c0                	test   %eax,%eax
+<     2493:	0f 84 0b 02 00 00    	je     26a4 <sys_sock_tcp_recv_k+0x294>
+<     2499:	39 c3                	cmp    %eax,%ebx
+<     249b:	0f 84 fc 01 00 00    	je     269d <sys_sock_tcp_recv_k+0x28d>
+<     24a1:	89 44 24 08          	mov    %eax,0x8(%esp)
+<     24a5:	c7 44 24 04 40 33 00 	movl   $0x3340,0x4(%esp)
+<     24ac:	00 
+<     24ad:	c7 04 24 02 01 01 02 	movl   $0x2010102,(%esp)
+<     24b4:	e8 47 ff ff ff       	call   2400 <sys_receiveMQ_k>
+<     24b9:	85 c0                	test   %eax,%eax
+<     24bb:	89 c3                	mov    %eax,%ebx
+<     24bd:	0f 84 d3 01 00 00    	je     2696 <sys_sock_tcp_recv_k+0x286>
+<     24c3:	c7 44 24 1c 40 33 00 	movl   $0x3340,0x1c(%esp)
+<     24ca:	00 
+<     24cb:	c7 44 24 20 00 00 00 	movl   $0x0,0x20(%esp)
+<     24d2:	00 
+<     24d3:	c7 44 24 24 00 00 00 	movl   $0x0,0x24(%esp)
+---
+>     2445:	74 3b                	je     2482 <sys_sock_tcp_recv_k+0x62>
+>     2447:	3b 05 4c 34 00 00    	cmp    0x344c,%eax
+>     244d:	c7 44 24 14 01 00 00 	movl   $0x1,0x14(%esp)
+>     2454:	00 
+>     2455:	74 2b                	je     2482 <sys_sock_tcp_recv_k+0x62>
+>     2457:	3b 05 78 34 00 00    	cmp    0x3478,%eax
+>     245d:	ba ef ef 00 00       	mov    $0xefef,%edx
+>     2462:	74 16                	je     247a <sys_sock_tcp_recv_k+0x5a>
+>     2464:	8b 5c 24 2c          	mov    0x2c(%esp),%ebx
+>     2468:	89 d0                	mov    %edx,%eax
+>     246a:	8b 74 24 30          	mov    0x30(%esp),%esi
+>     246e:	8b 7c 24 34          	mov    0x34(%esp),%edi
+>     2472:	8b 6c 24 38          	mov    0x38(%esp),%ebp
+>     2476:	83 c4 3c             	add    $0x3c,%esp
+>     2479:	c3                   	ret    
+>     247a:	c7 44 24 14 02 00 00 	movl   $0x2,0x14(%esp)
+>     2481:	00 
+>     2482:	8b 5c 24 48          	mov    0x48(%esp),%ebx
+>     2486:	c7 44 24 04 40 33 00 	movl   $0x3340,0x4(%esp)
+>     248d:	00 
+>     248e:	c7 04 24 02 01 01 02 	movl   $0x2010102,(%esp)
+>     2495:	83 c3 10             	add    $0x10,%ebx
+>     2498:	89 5c 24 08          	mov    %ebx,0x8(%esp)
+>     249c:	e8 6f ff ff ff       	call   2410 <sys_receiveMQ_k>
+>     24a1:	85 c0                	test   %eax,%eax
+>     24a3:	0f 84 0b 02 00 00    	je     26b4 <sys_sock_tcp_recv_k+0x294>
+>     24a9:	39 c3                	cmp    %eax,%ebx
+>     24ab:	0f 84 fc 01 00 00    	je     26ad <sys_sock_tcp_recv_k+0x28d>
+>     24b1:	89 44 24 08          	mov    %eax,0x8(%esp)
+>     24b5:	c7 44 24 04 40 33 00 	movl   $0x3340,0x4(%esp)
+>     24bc:	00 
+>     24bd:	c7 04 24 02 01 01 02 	movl   $0x2010102,(%esp)
+>     24c4:	e8 47 ff ff ff       	call   2410 <sys_receiveMQ_k>
+>     24c9:	85 c0                	test   %eax,%eax
+>     24cb:	89 c3                	mov    %eax,%ebx
+>     24cd:	0f 84 d3 01 00 00    	je     26a6 <sys_sock_tcp_recv_k+0x286>
+>     24d3:	c7 44 24 1c 40 33 00 	movl   $0x3340,0x1c(%esp)
+1755,1894c1754,1892
+<     24db:	e9 c9 00 00 00       	jmp    25a9 <sys_sock_tcp_recv_k+0x199>
+<     24e0:	3b 7c 24 40          	cmp    0x40(%esp),%edi
+<     24e4:	0f 84 da 00 00 00    	je     25c4 <sys_sock_tcp_recv_k+0x1b4>
+<     24ea:	6b 44 24 14 2c       	imul   $0x2c,0x14(%esp),%eax
+<     24ef:	8d a8 28 34 00 00    	lea    0x3428(%eax),%ebp
+<     24f5:	89 2c 24             	mov    %ebp,(%esp)
+<     24f8:	e8 a3 02 00 00       	call   27a0 <isempty>
+<     24fd:	c7 44 24 28 00 00 00 	movl   $0x0,0x28(%esp)
+<     2504:	00 
+<     2505:	85 c0                	test   %eax,%eax
+<     2507:	0f 84 e8 00 00 00    	je     25f5 <sys_sock_tcp_recv_k+0x1e5>
+<     250d:	a1 20 34 00 00       	mov    0x3420,%eax
+<     2512:	c7 44 24 14 00 00 00 	movl   $0x0,0x14(%esp)
+<     2519:	00 
+<     251a:	39 c6                	cmp    %eax,%esi
+<     251c:	0f 84 23 01 00 00    	je     2645 <sys_sock_tcp_recv_k+0x235>
+<     2522:	39 c7                	cmp    %eax,%edi
+<     2524:	0f 84 1b 01 00 00    	je     2645 <sys_sock_tcp_recv_k+0x235>
+<     252a:	a1 4c 34 00 00       	mov    0x344c,%eax
+<     252f:	c7 44 24 14 01 00 00 	movl   $0x1,0x14(%esp)
+<     2536:	00 
+<     2537:	39 c6                	cmp    %eax,%esi
+<     2539:	0f 84 06 01 00 00    	je     2645 <sys_sock_tcp_recv_k+0x235>
+<     253f:	39 c7                	cmp    %eax,%edi
+<     2541:	0f 84 fe 00 00 00    	je     2645 <sys_sock_tcp_recv_k+0x235>
+<     2547:	a1 78 34 00 00       	mov    0x3478,%eax
+<     254c:	39 c6                	cmp    %eax,%esi
+<     254e:	0f 84 e9 00 00 00    	je     263d <sys_sock_tcp_recv_k+0x22d>
+<     2554:	39 c7                	cmp    %eax,%edi
+<     2556:	c7 44 24 14 02 00 00 	movl   $0x2,0x14(%esp)
+<     255d:	00 
+<     255e:	0f 84 e1 00 00 00    	je     2645 <sys_sock_tcp_recv_k+0x235>
+<     2564:	c7 04 24 8c 2a 00 00 	movl   $0x2a8c,(%esp)
+<     256b:	e8 e0 ea ff ff       	call   1050 <spark_print>
+<     2570:	8b 74 24 24          	mov    0x24(%esp),%esi
+<     2574:	c7 44 24 14 03 00 00 	movl   $0x3,0x14(%esp)
+<     257b:	00 
+<     257c:	85 f6                	test   %esi,%esi
+<     257e:	75 08                	jne    2588 <sys_sock_tcp_recv_k+0x178>
+<     2580:	c7 44 24 20 00 00 00 	movl   $0x0,0x20(%esp)
+<     2587:	00 
+<     2588:	2b 5c 24 18          	sub    0x18(%esp),%ebx
+<     258c:	89 d8                	mov    %ebx,%eax
+<     258e:	83 e8 10             	sub    $0x10,%eax
+<     2591:	0f 84 9d 00 00 00    	je     2634 <sys_sock_tcp_recv_k+0x224>
+<     2597:	8b 4c 24 1c          	mov    0x1c(%esp),%ecx
+<     259b:	89 c3                	mov    %eax,%ebx
+<     259d:	8b 54 24 18          	mov    0x18(%esp),%edx
+<     25a1:	8d 4c 0a 10          	lea    0x10(%edx,%ecx,1),%ecx
+<     25a5:	89 4c 24 1c          	mov    %ecx,0x1c(%esp)
+<     25a9:	8b 54 24 1c          	mov    0x1c(%esp),%edx
+<     25ad:	8b 72 04             	mov    0x4(%edx),%esi
+<     25b0:	8b 4a 08             	mov    0x8(%edx),%ecx
+<     25b3:	3b 74 24 40          	cmp    0x40(%esp),%esi
+<     25b7:	8b 7a 0c             	mov    0xc(%edx),%edi
+<     25ba:	89 4c 24 18          	mov    %ecx,0x18(%esp)
+<     25be:	0f 85 1c ff ff ff    	jne    24e0 <sys_sock_tcp_recv_k+0xd0>
+<     25c4:	8b 44 24 18          	mov    0x18(%esp),%eax
+<     25c8:	8b 54 24 44          	mov    0x44(%esp),%edx
+<     25cc:	89 44 24 08          	mov    %eax,0x8(%esp)
+<     25d0:	8b 44 24 1c          	mov    0x1c(%esp),%eax
+<     25d4:	89 14 24             	mov    %edx,(%esp)
+<     25d7:	83 c0 10             	add    $0x10,%eax
+<     25da:	89 44 24 04          	mov    %eax,0x4(%esp)
+<     25de:	e8 4d 03 00 00       	call   2930 <memcpy>
+<     25e3:	8b 4c 24 18          	mov    0x18(%esp),%ecx
+<     25e7:	c7 44 24 24 01 00 00 	movl   $0x1,0x24(%esp)
+<     25ee:	00 
+<     25ef:	89 4c 24 20          	mov    %ecx,0x20(%esp)
+<     25f3:	eb 93                	jmp    2588 <sys_sock_tcp_recv_k+0x178>
+<     25f5:	8b 44 24 44          	mov    0x44(%esp),%eax
+<     25f9:	89 2c 24             	mov    %ebp,(%esp)
+<     25fc:	89 44 24 04          	mov    %eax,0x4(%esp)
+<     2600:	e8 2b 02 00 00       	call   2830 <removeq>
+<     2605:	8b 4c 24 14          	mov    0x14(%esp),%ecx
+<     2609:	c7 44 24 24 01 00 00 	movl   $0x1,0x24(%esp)
+<     2610:	00 
+<     2611:	8d 14 89             	lea    (%ecx,%ecx,4),%edx
+<     2614:	8d 14 51             	lea    (%ecx,%edx,2),%edx
+<     2617:	01 c2                	add    %eax,%edx
+<     2619:	8b 04 95 3c 34 00 00 	mov    0x343c(,%edx,4),%eax
+<     2620:	c7 04 95 3c 34 00 00 	movl   $0x0,0x343c(,%edx,4)
+<     2627:	00 00 00 00 
+<     262b:	89 44 24 28          	mov    %eax,0x28(%esp)
+<     262f:	e9 d9 fe ff ff       	jmp    250d <sys_sock_tcp_recv_k+0xfd>
+<     2634:	8b 54 24 20          	mov    0x20(%esp),%edx
+<     2638:	e9 17 fe ff ff       	jmp    2454 <sys_sock_tcp_recv_k+0x44>
+<     263d:	c7 44 24 14 02 00 00 	movl   $0x2,0x14(%esp)
+<     2644:	00 
+<     2645:	8b 44 24 1c          	mov    0x1c(%esp),%eax
+<     2649:	8b 54 24 18          	mov    0x18(%esp),%edx
+<     264d:	83 c0 10             	add    $0x10,%eax
+<     2650:	89 44 24 04          	mov    %eax,0x4(%esp)
+<     2654:	6b 44 24 14 2c       	imul   $0x2c,0x14(%esp),%eax
+<     2659:	89 54 24 08          	mov    %edx,0x8(%esp)
+<     265d:	05 28 34 00 00       	add    $0x3428,%eax
+<     2662:	89 04 24             	mov    %eax,(%esp)
+<     2665:	e8 56 01 00 00       	call   27c0 <insertq>
+<     266a:	8b 4c 24 14          	mov    0x14(%esp),%ecx
+<     266e:	8d 14 89             	lea    (%ecx,%ecx,4),%edx
+<     2671:	8d 14 51             	lea    (%ecx,%edx,2),%edx
+<     2674:	8b 4c 24 28          	mov    0x28(%esp),%ecx
+<     2678:	01 c2                	add    %eax,%edx
+<     267a:	8b 44 24 18          	mov    0x18(%esp),%eax
+<     267e:	89 04 95 3c 34 00 00 	mov    %eax,0x343c(,%edx,4)
+<     2685:	8b 54 24 24          	mov    0x24(%esp),%edx
+<     2689:	f7 da                	neg    %edx
+<     268b:	21 ca                	and    %ecx,%edx
+<     268d:	89 54 24 20          	mov    %edx,0x20(%esp)
+<     2691:	e9 f2 fe ff ff       	jmp    2588 <sys_sock_tcp_recv_k+0x178>
+<     2696:	31 d2                	xor    %edx,%edx
+<     2698:	e9 b7 fd ff ff       	jmp    2454 <sys_sock_tcp_recv_k+0x44>
+<     269d:	89 c3                	mov    %eax,%ebx
+<     269f:	e9 1f fe ff ff       	jmp    24c3 <sys_sock_tcp_recv_k+0xb3>
+<     26a4:	6b 44 24 14 2c       	imul   $0x2c,0x14(%esp),%eax
+<     26a9:	8d 98 28 34 00 00    	lea    0x3428(%eax),%ebx
+<     26af:	89 1c 24             	mov    %ebx,(%esp)
+<     26b2:	e8 e9 00 00 00       	call   27a0 <isempty>
+<     26b7:	31 d2                	xor    %edx,%edx
+<     26b9:	85 c0                	test   %eax,%eax
+<     26bb:	0f 85 93 fd ff ff    	jne    2454 <sys_sock_tcp_recv_k+0x44>
+<     26c1:	8b 44 24 44          	mov    0x44(%esp),%eax
+<     26c5:	89 1c 24             	mov    %ebx,(%esp)
+<     26c8:	89 44 24 04          	mov    %eax,0x4(%esp)
+<     26cc:	e8 5f 01 00 00       	call   2830 <removeq>
+<     26d1:	8b 4c 24 14          	mov    0x14(%esp),%ecx
+<     26d5:	8d 14 89             	lea    (%ecx,%ecx,4),%edx
+<     26d8:	8d 14 51             	lea    (%ecx,%edx,2),%edx
+<     26db:	01 c2                	add    %eax,%edx
+<     26dd:	8b 04 95 3c 34 00 00 	mov    0x343c(,%edx,4),%eax
+<     26e4:	c7 04 95 3c 34 00 00 	movl   $0x0,0x343c(,%edx,4)
+<     26eb:	00 00 00 00 
+<     26ef:	89 c2                	mov    %eax,%edx
+<     26f1:	e9 5e fd ff ff       	jmp    2454 <sys_sock_tcp_recv_k+0x44>
+<     26f6:	8d 76 00             	lea    0x0(%esi),%esi
+<     26f9:	8d bc 27 00 00 00 00 	lea    0x0(%edi),%edi
+< 
+< 00002700 <sys_pci1710_analog_out_k>:
+<     2700:	e9 fb eb ff ff       	jmp    1300 <spark_pci1710_analog_out>
+<     2705:	8d 74 26 00          	lea    0x0(%esi),%esi
+---
+>     24db:	c7 44 24 20 00 00 00 	movl   $0x0,0x20(%esp)
+>     24e2:	00 
+>     24e3:	c7 44 24 24 00 00 00 	movl   $0x0,0x24(%esp)
+>     24ea:	00 
+>     24eb:	e9 c9 00 00 00       	jmp    25b9 <sys_sock_tcp_recv_k+0x199>
+>     24f0:	3b 7c 24 40          	cmp    0x40(%esp),%edi
+>     24f4:	0f 84 da 00 00 00    	je     25d4 <sys_sock_tcp_recv_k+0x1b4>
+>     24fa:	6b 44 24 14 2c       	imul   $0x2c,0x14(%esp),%eax
+>     24ff:	8d a8 28 34 00 00    	lea    0x3428(%eax),%ebp
+>     2505:	89 2c 24             	mov    %ebp,(%esp)
+>     2508:	e8 a3 02 00 00       	call   27b0 <isempty>
+>     250d:	c7 44 24 28 00 00 00 	movl   $0x0,0x28(%esp)
+>     2514:	00 
+>     2515:	85 c0                	test   %eax,%eax
+>     2517:	0f 84 e8 00 00 00    	je     2605 <sys_sock_tcp_recv_k+0x1e5>
+>     251d:	a1 20 34 00 00       	mov    0x3420,%eax
+>     2522:	c7 44 24 14 00 00 00 	movl   $0x0,0x14(%esp)
+>     2529:	00 
+>     252a:	39 c6                	cmp    %eax,%esi
+>     252c:	0f 84 23 01 00 00    	je     2655 <sys_sock_tcp_recv_k+0x235>
+>     2532:	39 c7                	cmp    %eax,%edi
+>     2534:	0f 84 1b 01 00 00    	je     2655 <sys_sock_tcp_recv_k+0x235>
+>     253a:	a1 4c 34 00 00       	mov    0x344c,%eax
+>     253f:	c7 44 24 14 01 00 00 	movl   $0x1,0x14(%esp)
+>     2546:	00 
+>     2547:	39 c6                	cmp    %eax,%esi
+>     2549:	0f 84 06 01 00 00    	je     2655 <sys_sock_tcp_recv_k+0x235>
+>     254f:	39 c7                	cmp    %eax,%edi
+>     2551:	0f 84 fe 00 00 00    	je     2655 <sys_sock_tcp_recv_k+0x235>
+>     2557:	a1 78 34 00 00       	mov    0x3478,%eax
+>     255c:	39 c6                	cmp    %eax,%esi
+>     255e:	0f 84 e9 00 00 00    	je     264d <sys_sock_tcp_recv_k+0x22d>
+>     2564:	39 c7                	cmp    %eax,%edi
+>     2566:	c7 44 24 14 02 00 00 	movl   $0x2,0x14(%esp)
+>     256d:	00 
+>     256e:	0f 84 e1 00 00 00    	je     2655 <sys_sock_tcp_recv_k+0x235>
+>     2574:	c7 04 24 8c 2a 00 00 	movl   $0x2a8c,(%esp)
+>     257b:	e8 d0 ea ff ff       	call   1050 <spark_print>
+>     2580:	8b 74 24 24          	mov    0x24(%esp),%esi
+>     2584:	c7 44 24 14 03 00 00 	movl   $0x3,0x14(%esp)
+>     258b:	00 
+>     258c:	85 f6                	test   %esi,%esi
+>     258e:	75 08                	jne    2598 <sys_sock_tcp_recv_k+0x178>
+>     2590:	c7 44 24 20 00 00 00 	movl   $0x0,0x20(%esp)
+>     2597:	00 
+>     2598:	2b 5c 24 18          	sub    0x18(%esp),%ebx
+>     259c:	89 d8                	mov    %ebx,%eax
+>     259e:	83 e8 10             	sub    $0x10,%eax
+>     25a1:	0f 84 9d 00 00 00    	je     2644 <sys_sock_tcp_recv_k+0x224>
+>     25a7:	8b 4c 24 1c          	mov    0x1c(%esp),%ecx
+>     25ab:	89 c3                	mov    %eax,%ebx
+>     25ad:	8b 54 24 18          	mov    0x18(%esp),%edx
+>     25b1:	8d 4c 0a 10          	lea    0x10(%edx,%ecx,1),%ecx
+>     25b5:	89 4c 24 1c          	mov    %ecx,0x1c(%esp)
+>     25b9:	8b 54 24 1c          	mov    0x1c(%esp),%edx
+>     25bd:	8b 72 04             	mov    0x4(%edx),%esi
+>     25c0:	8b 4a 08             	mov    0x8(%edx),%ecx
+>     25c3:	3b 74 24 40          	cmp    0x40(%esp),%esi
+>     25c7:	8b 7a 0c             	mov    0xc(%edx),%edi
+>     25ca:	89 4c 24 18          	mov    %ecx,0x18(%esp)
+>     25ce:	0f 85 1c ff ff ff    	jne    24f0 <sys_sock_tcp_recv_k+0xd0>
+>     25d4:	8b 44 24 18          	mov    0x18(%esp),%eax
+>     25d8:	8b 54 24 44          	mov    0x44(%esp),%edx
+>     25dc:	89 44 24 08          	mov    %eax,0x8(%esp)
+>     25e0:	8b 44 24 1c          	mov    0x1c(%esp),%eax
+>     25e4:	89 14 24             	mov    %edx,(%esp)
+>     25e7:	83 c0 10             	add    $0x10,%eax
+>     25ea:	89 44 24 04          	mov    %eax,0x4(%esp)
+>     25ee:	e8 4d 03 00 00       	call   2940 <memcpy>
+>     25f3:	8b 4c 24 18          	mov    0x18(%esp),%ecx
+>     25f7:	c7 44 24 24 01 00 00 	movl   $0x1,0x24(%esp)
+>     25fe:	00 
+>     25ff:	89 4c 24 20          	mov    %ecx,0x20(%esp)
+>     2603:	eb 93                	jmp    2598 <sys_sock_tcp_recv_k+0x178>
+>     2605:	8b 44 24 44          	mov    0x44(%esp),%eax
+>     2609:	89 2c 24             	mov    %ebp,(%esp)
+>     260c:	89 44 24 04          	mov    %eax,0x4(%esp)
+>     2610:	e8 2b 02 00 00       	call   2840 <removeq>
+>     2615:	8b 4c 24 14          	mov    0x14(%esp),%ecx
+>     2619:	c7 44 24 24 01 00 00 	movl   $0x1,0x24(%esp)
+>     2620:	00 
+>     2621:	8d 14 89             	lea    (%ecx,%ecx,4),%edx
+>     2624:	8d 14 51             	lea    (%ecx,%edx,2),%edx
+>     2627:	01 c2                	add    %eax,%edx
+>     2629:	8b 04 95 3c 34 00 00 	mov    0x343c(,%edx,4),%eax
+>     2630:	c7 04 95 3c 34 00 00 	movl   $0x0,0x343c(,%edx,4)
+>     2637:	00 00 00 00 
+>     263b:	89 44 24 28          	mov    %eax,0x28(%esp)
+>     263f:	e9 d9 fe ff ff       	jmp    251d <sys_sock_tcp_recv_k+0xfd>
+>     2644:	8b 54 24 20          	mov    0x20(%esp),%edx
+>     2648:	e9 17 fe ff ff       	jmp    2464 <sys_sock_tcp_recv_k+0x44>
+>     264d:	c7 44 24 14 02 00 00 	movl   $0x2,0x14(%esp)
+>     2654:	00 
+>     2655:	8b 44 24 1c          	mov    0x1c(%esp),%eax
+>     2659:	8b 54 24 18          	mov    0x18(%esp),%edx
+>     265d:	83 c0 10             	add    $0x10,%eax
+>     2660:	89 44 24 04          	mov    %eax,0x4(%esp)
+>     2664:	6b 44 24 14 2c       	imul   $0x2c,0x14(%esp),%eax
+>     2669:	89 54 24 08          	mov    %edx,0x8(%esp)
+>     266d:	05 28 34 00 00       	add    $0x3428,%eax
+>     2672:	89 04 24             	mov    %eax,(%esp)
+>     2675:	e8 56 01 00 00       	call   27d0 <insertq>
+>     267a:	8b 4c 24 14          	mov    0x14(%esp),%ecx
+>     267e:	8d 14 89             	lea    (%ecx,%ecx,4),%edx
+>     2681:	8d 14 51             	lea    (%ecx,%edx,2),%edx
+>     2684:	8b 4c 24 28          	mov    0x28(%esp),%ecx
+>     2688:	01 c2                	add    %eax,%edx
+>     268a:	8b 44 24 18          	mov    0x18(%esp),%eax
+>     268e:	89 04 95 3c 34 00 00 	mov    %eax,0x343c(,%edx,4)
+>     2695:	8b 54 24 24          	mov    0x24(%esp),%edx
+>     2699:	f7 da                	neg    %edx
+>     269b:	21 ca                	and    %ecx,%edx
+>     269d:	89 54 24 20          	mov    %edx,0x20(%esp)
+>     26a1:	e9 f2 fe ff ff       	jmp    2598 <sys_sock_tcp_recv_k+0x178>
+>     26a6:	31 d2                	xor    %edx,%edx
+>     26a8:	e9 b7 fd ff ff       	jmp    2464 <sys_sock_tcp_recv_k+0x44>
+>     26ad:	89 c3                	mov    %eax,%ebx
+>     26af:	e9 1f fe ff ff       	jmp    24d3 <sys_sock_tcp_recv_k+0xb3>
+>     26b4:	6b 44 24 14 2c       	imul   $0x2c,0x14(%esp),%eax
+>     26b9:	8d 98 28 34 00 00    	lea    0x3428(%eax),%ebx
+>     26bf:	89 1c 24             	mov    %ebx,(%esp)
+>     26c2:	e8 e9 00 00 00       	call   27b0 <isempty>
+>     26c7:	31 d2                	xor    %edx,%edx
+>     26c9:	85 c0                	test   %eax,%eax
+>     26cb:	0f 85 93 fd ff ff    	jne    2464 <sys_sock_tcp_recv_k+0x44>
+>     26d1:	8b 44 24 44          	mov    0x44(%esp),%eax
+>     26d5:	89 1c 24             	mov    %ebx,(%esp)
+>     26d8:	89 44 24 04          	mov    %eax,0x4(%esp)
+>     26dc:	e8 5f 01 00 00       	call   2840 <removeq>
+>     26e1:	8b 4c 24 14          	mov    0x14(%esp),%ecx
+>     26e5:	8d 14 89             	lea    (%ecx,%ecx,4),%edx
+>     26e8:	8d 14 51             	lea    (%ecx,%edx,2),%edx
+>     26eb:	01 c2                	add    %eax,%edx
+>     26ed:	8b 04 95 3c 34 00 00 	mov    0x343c(,%edx,4),%eax
+>     26f4:	c7 04 95 3c 34 00 00 	movl   $0x0,0x343c(,%edx,4)
+>     26fb:	00 00 00 00 
+>     26ff:	89 c2                	mov    %eax,%edx
+>     2701:	e9 5e fd ff ff       	jmp    2464 <sys_sock_tcp_recv_k+0x44>
+>     2706:	8d 76 00             	lea    0x0(%esi),%esi
+1897,1898c1895,1896
+< 00002710 <sys_pci1710_analog_in_k>:
+<     2710:	e9 bb eb ff ff       	jmp    12d0 <spark_pci1710_analog_in>
+---
+> 00002710 <sys_pci1710_analog_out_k>:
+>     2710:	e9 eb eb ff ff       	jmp    1300 <spark_pci1710_analog_out>
+1902,1903c1900,1901
+< 00002720 <sys_pci1710_digital_out_k>:
+<     2720:	e9 7b eb ff ff       	jmp    12a0 <spark_pci1710_digital_out>
+---
+> 00002720 <sys_pci1710_analog_in_k>:
+>     2720:	e9 ab eb ff ff       	jmp    12d0 <spark_pci1710_analog_in>
+1907,1908c1905,1906
+< 00002730 <sys_pci1710_digital_in_k>:
+<     2730:	e9 3b eb ff ff       	jmp    1270 <spark_pci1710_digital_in>
+---
+> 00002730 <sys_pci1710_digital_out_k>:
+>     2730:	e9 6b eb ff ff       	jmp    12a0 <spark_pci1710_digital_out>
+1912,1916c1910,1919
+< 00002740 <sys_reg_intrpt_k>:
+<     2740:	c7 44 24 08 40 32 00 	movl   $0x3240,0x8(%esp)
+<     2747:	00 
+<     2748:	e9 f3 ea ff ff       	jmp    1240 <spark_register_interrupt>
+<     274d:	00 00                	add    %al,(%eax)
+---
+> 00002740 <sys_pci1710_digital_in_k>:
+>     2740:	e9 2b eb ff ff       	jmp    1270 <spark_pci1710_digital_in>
+>     2745:	8d 74 26 00          	lea    0x0(%esi),%esi
+>     2749:	8d bc 27 00 00 00 00 	lea    0x0(%edi),%edi
+> 
+> 00002750 <sys_reg_intrpt_k>:
+>     2750:	c7 44 24 08 40 32 00 	movl   $0x3240,0x8(%esp)
+>     2757:	00 
+>     2758:	e9 e3 ea ff ff       	jmp    1240 <spark_register_interrupt>
+>     275d:	00 00                	add    %al,(%eax)
+1919,1925c1922,1924
+< 00002750 <init_tasks>:
+<     2750:	83 ec 1c             	sub    $0x1c,%esp
+<     2753:	c7 44 24 0c 00 75 00 	movl   $0x7500,0xc(%esp)
+<     275a:	00 
+<     275b:	c7 44 24 08 40 70 00 	movl   $0x7040,0x8(%esp)
+<     2762:	00 
+<     2763:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+---
+> 00002760 <init_tasks>:
+>     2760:	83 ec 1c             	sub    $0x1c,%esp
+>     2763:	c7 44 24 0c 00 75 00 	movl   $0x7500,0xc(%esp)
+1927,1933c1926,1932
+<     276b:	c7 04 24 24 3e 00 00 	movl   $0x3e24,(%esp)
+<     2772:	e8 09 f3 ff ff       	call   1a80 <pthread_create>
+<     2777:	c7 44 24 0c 20 b1 00 	movl   $0xb120,0xc(%esp)
+<     277e:	00 
+<     277f:	c7 44 24 08 20 b0 00 	movl   $0xb020,0x8(%esp)
+<     2786:	00 
+<     2787:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+---
+>     276b:	c7 44 24 08 40 70 00 	movl   $0x7040,0x8(%esp)
+>     2772:	00 
+>     2773:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+>     277a:	00 
+>     277b:	c7 04 24 24 3e 00 00 	movl   $0x3e24,(%esp)
+>     2782:	e8 f9 f2 ff ff       	call   1a80 <pthread_create>
+>     2787:	c7 44 24 0c 20 b1 00 	movl   $0xb120,0xc(%esp)
+1935,1938c1934,1941
+<     278f:	c7 04 24 20 3e 00 00 	movl   $0x3e20,(%esp)
+<     2796:	e8 e5 f2 ff ff       	call   1a80 <pthread_create>
+<     279b:	83 c4 1c             	add    $0x1c,%esp
+<     279e:	c3                   	ret    
+---
+>     278f:	c7 44 24 08 20 b0 00 	movl   $0xb020,0x8(%esp)
+>     2796:	00 
+>     2797:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+>     279e:	00 
+>     279f:	c7 04 24 20 3e 00 00 	movl   $0x3e20,(%esp)
+>     27a6:	e8 d5 f2 ff ff       	call   1a80 <pthread_create>
+>     27ab:	83 c4 1c             	add    $0x1c,%esp
+>     27ae:	c3                   	ret    
+1941,2061c1944,2064
+< 000027a0 <isempty>:
+<     27a0:	8b 54 24 04          	mov    0x4(%esp),%edx
+<     27a4:	8b 42 08             	mov    0x8(%edx),%eax
+<     27a7:	3b 42 04             	cmp    0x4(%edx),%eax
+<     27aa:	0f 94 c0             	sete   %al
+<     27ad:	0f b6 c0             	movzbl %al,%eax
+<     27b0:	c3                   	ret    
+<     27b1:	eb 0d                	jmp    27c0 <insertq>
+<     27b3:	90                   	nop    
+<     27b4:	90                   	nop    
+<     27b5:	90                   	nop    
+<     27b6:	90                   	nop    
+<     27b7:	90                   	nop    
+<     27b8:	90                   	nop    
+<     27b9:	90                   	nop    
+<     27ba:	90                   	nop    
+<     27bb:	90                   	nop    
+<     27bc:	90                   	nop    
+<     27bd:	90                   	nop    
+<     27be:	90                   	nop    
+<     27bf:	90                   	nop    
+< 
+< 000027c0 <insertq>:
+<     27c0:	83 ec 1c             	sub    $0x1c,%esp
+<     27c3:	89 5c 24 10          	mov    %ebx,0x10(%esp)
+<     27c7:	8b 5c 24 20          	mov    0x20(%esp),%ebx
+<     27cb:	89 7c 24 18          	mov    %edi,0x18(%esp)
+<     27cf:	89 74 24 14          	mov    %esi,0x14(%esp)
+<     27d3:	8b 73 04             	mov    0x4(%ebx),%esi
+<     27d6:	8d 46 01             	lea    0x1(%esi),%eax
+<     27d9:	89 c2                	mov    %eax,%edx
+<     27db:	c1 fa 1f             	sar    $0x1f,%edx
+<     27de:	f7 3b                	idivl  (%ebx)
+<     27e0:	3b 53 08             	cmp    0x8(%ebx),%edx
+<     27e3:	89 d7                	mov    %edx,%edi
+<     27e5:	74 3a                	je     2821 <insertq+0x61>
+<     27e7:	8b 44 24 28          	mov    0x28(%esp),%eax
+<     27eb:	89 44 24 08          	mov    %eax,0x8(%esp)
+<     27ef:	8b 44 24 24          	mov    0x24(%esp),%eax
+<     27f3:	89 44 24 04          	mov    %eax,0x4(%esp)
+<     27f7:	69 c6 c8 00 00 00    	imul   $0xc8,%esi,%eax
+<     27fd:	03 43 10             	add    0x10(%ebx),%eax
+<     2800:	89 04 24             	mov    %eax,(%esp)
+<     2803:	e8 28 01 00 00       	call   2930 <memcpy>
+<     2808:	83 43 0c 01          	addl   $0x1,0xc(%ebx)
+<     280c:	89 7b 04             	mov    %edi,0x4(%ebx)
+<     280f:	89 f0                	mov    %esi,%eax
+<     2811:	8b 5c 24 10          	mov    0x10(%esp),%ebx
+<     2815:	8b 74 24 14          	mov    0x14(%esp),%esi
+<     2819:	8b 7c 24 18          	mov    0x18(%esp),%edi
+<     281d:	83 c4 1c             	add    $0x1c,%esp
+<     2820:	c3                   	ret    
+<     2821:	be e7 03 00 00       	mov    $0x3e7,%esi
+<     2826:	eb e7                	jmp    280f <insertq+0x4f>
+<     2828:	90                   	nop    
+<     2829:	8d b4 26 00 00 00 00 	lea    0x0(%esi),%esi
+< 
+< 00002830 <removeq>:
+<     2830:	83 ec 1c             	sub    $0x1c,%esp
+<     2833:	89 5c 24 14          	mov    %ebx,0x14(%esp)
+<     2837:	8b 5c 24 20          	mov    0x20(%esp),%ebx
+<     283b:	89 74 24 18          	mov    %esi,0x18(%esp)
+<     283f:	be e7 03 00 00       	mov    $0x3e7,%esi
+<     2844:	89 1c 24             	mov    %ebx,(%esp)
+<     2847:	e8 54 ff ff ff       	call   27a0 <isempty>
+<     284c:	85 c0                	test   %eax,%eax
+<     284e:	75 5a                	jne    28aa <removeq+0x7a>
+<     2850:	8b 73 08             	mov    0x8(%ebx),%esi
+<     2853:	c7 44 24 08 c8 00 00 	movl   $0xc8,0x8(%esp)
+<     285a:	00 
+<     285b:	69 c6 c8 00 00 00    	imul   $0xc8,%esi,%eax
+<     2861:	03 43 10             	add    0x10(%ebx),%eax
+<     2864:	89 44 24 04          	mov    %eax,0x4(%esp)
+<     2868:	8b 44 24 24          	mov    0x24(%esp),%eax
+<     286c:	89 04 24             	mov    %eax,(%esp)
+<     286f:	e8 bc 00 00 00       	call   2930 <memcpy>
+<     2874:	c7 44 24 08 c8 00 00 	movl   $0xc8,0x8(%esp)
+<     287b:	00 
+<     287c:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+<     2883:	00 
+<     2884:	69 43 08 c8 00 00 00 	imul   $0xc8,0x8(%ebx),%eax
+<     288b:	03 43 10             	add    0x10(%ebx),%eax
+<     288e:	89 04 24             	mov    %eax,(%esp)
+<     2891:	e8 ca 00 00 00       	call   2960 <memset>
+<     2896:	8b 53 08             	mov    0x8(%ebx),%edx
+<     2899:	83 6b 0c 01          	subl   $0x1,0xc(%ebx)
+<     289d:	83 c2 01             	add    $0x1,%edx
+<     28a0:	89 d0                	mov    %edx,%eax
+<     28a2:	c1 fa 1f             	sar    $0x1f,%edx
+<     28a5:	f7 3b                	idivl  (%ebx)
+<     28a7:	89 53 08             	mov    %edx,0x8(%ebx)
+<     28aa:	89 f0                	mov    %esi,%eax
+<     28ac:	8b 5c 24 14          	mov    0x14(%esp),%ebx
+<     28b0:	8b 74 24 18          	mov    0x18(%esp),%esi
+<     28b4:	83 c4 1c             	add    $0x1c,%esp
+<     28b7:	c3                   	ret    
+<     28b8:	90                   	nop    
+<     28b9:	8d b4 26 00 00 00 00 	lea    0x0(%esi),%esi
+< 
+< 000028c0 <init_cq_monitor>:
+<     28c0:	83 ec 0c             	sub    $0xc,%esp
+<     28c3:	8b 15 04 30 00 00    	mov    0x3004,%edx
+<     28c9:	8b 44 24 10          	mov    0x10(%esp),%eax
+<     28cd:	81 c2 c0 34 00 00    	add    $0x34c0,%edx
+<     28d3:	c7 00 04 00 00 00    	movl   $0x4,(%eax)
+<     28d9:	c7 40 04 00 00 00 00 	movl   $0x0,0x4(%eax)
+<     28e0:	c7 40 08 00 00 00 00 	movl   $0x0,0x8(%eax)
+<     28e7:	c7 40 0c 00 00 00 00 	movl   $0x0,0xc(%eax)
+<     28ee:	89 50 10             	mov    %edx,0x10(%eax)
+<     28f1:	a1 04 30 00 00       	mov    0x3004,%eax
+<     28f6:	c7 44 24 08 20 03 00 	movl   $0x320,0x8(%esp)
+<     28fd:	00 
+<     28fe:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+<     2905:	00 
+<     2906:	0f b6 80 c0 34 00 00 	movzbl 0x34c0(%eax),%eax
+<     290d:	89 04 24             	mov    %eax,(%esp)
+<     2910:	e8 4b 00 00 00       	call   2960 <memset>
+<     2915:	81 05 04 30 00 00 20 	addl   $0x320,0x3004
+<     291c:	03 00 00 
+<     291f:	83 c4 0c             	add    $0xc,%esp
+<     2922:	c3                   	ret    
+---
+> 000027b0 <isempty>:
+>     27b0:	8b 54 24 04          	mov    0x4(%esp),%edx
+>     27b4:	8b 42 08             	mov    0x8(%edx),%eax
+>     27b7:	3b 42 04             	cmp    0x4(%edx),%eax
+>     27ba:	0f 94 c0             	sete   %al
+>     27bd:	0f b6 c0             	movzbl %al,%eax
+>     27c0:	c3                   	ret    
+>     27c1:	eb 0d                	jmp    27d0 <insertq>
+>     27c3:	90                   	nop    
+>     27c4:	90                   	nop    
+>     27c5:	90                   	nop    
+>     27c6:	90                   	nop    
+>     27c7:	90                   	nop    
+>     27c8:	90                   	nop    
+>     27c9:	90                   	nop    
+>     27ca:	90                   	nop    
+>     27cb:	90                   	nop    
+>     27cc:	90                   	nop    
+>     27cd:	90                   	nop    
+>     27ce:	90                   	nop    
+>     27cf:	90                   	nop    
+> 
+> 000027d0 <insertq>:
+>     27d0:	83 ec 1c             	sub    $0x1c,%esp
+>     27d3:	89 5c 24 10          	mov    %ebx,0x10(%esp)
+>     27d7:	8b 5c 24 20          	mov    0x20(%esp),%ebx
+>     27db:	89 7c 24 18          	mov    %edi,0x18(%esp)
+>     27df:	89 74 24 14          	mov    %esi,0x14(%esp)
+>     27e3:	8b 73 04             	mov    0x4(%ebx),%esi
+>     27e6:	8d 46 01             	lea    0x1(%esi),%eax
+>     27e9:	89 c2                	mov    %eax,%edx
+>     27eb:	c1 fa 1f             	sar    $0x1f,%edx
+>     27ee:	f7 3b                	idivl  (%ebx)
+>     27f0:	3b 53 08             	cmp    0x8(%ebx),%edx
+>     27f3:	89 d7                	mov    %edx,%edi
+>     27f5:	74 3a                	je     2831 <insertq+0x61>
+>     27f7:	8b 44 24 28          	mov    0x28(%esp),%eax
+>     27fb:	89 44 24 08          	mov    %eax,0x8(%esp)
+>     27ff:	8b 44 24 24          	mov    0x24(%esp),%eax
+>     2803:	89 44 24 04          	mov    %eax,0x4(%esp)
+>     2807:	69 c6 c8 00 00 00    	imul   $0xc8,%esi,%eax
+>     280d:	03 43 10             	add    0x10(%ebx),%eax
+>     2810:	89 04 24             	mov    %eax,(%esp)
+>     2813:	e8 28 01 00 00       	call   2940 <memcpy>
+>     2818:	83 43 0c 01          	addl   $0x1,0xc(%ebx)
+>     281c:	89 7b 04             	mov    %edi,0x4(%ebx)
+>     281f:	89 f0                	mov    %esi,%eax
+>     2821:	8b 5c 24 10          	mov    0x10(%esp),%ebx
+>     2825:	8b 74 24 14          	mov    0x14(%esp),%esi
+>     2829:	8b 7c 24 18          	mov    0x18(%esp),%edi
+>     282d:	83 c4 1c             	add    $0x1c,%esp
+>     2830:	c3                   	ret    
+>     2831:	be e7 03 00 00       	mov    $0x3e7,%esi
+>     2836:	eb e7                	jmp    281f <insertq+0x4f>
+>     2838:	90                   	nop    
+>     2839:	8d b4 26 00 00 00 00 	lea    0x0(%esi),%esi
+> 
+> 00002840 <removeq>:
+>     2840:	83 ec 1c             	sub    $0x1c,%esp
+>     2843:	89 5c 24 14          	mov    %ebx,0x14(%esp)
+>     2847:	8b 5c 24 20          	mov    0x20(%esp),%ebx
+>     284b:	89 74 24 18          	mov    %esi,0x18(%esp)
+>     284f:	be e7 03 00 00       	mov    $0x3e7,%esi
+>     2854:	89 1c 24             	mov    %ebx,(%esp)
+>     2857:	e8 54 ff ff ff       	call   27b0 <isempty>
+>     285c:	85 c0                	test   %eax,%eax
+>     285e:	75 5a                	jne    28ba <removeq+0x7a>
+>     2860:	8b 73 08             	mov    0x8(%ebx),%esi
+>     2863:	c7 44 24 08 c8 00 00 	movl   $0xc8,0x8(%esp)
+>     286a:	00 
+>     286b:	69 c6 c8 00 00 00    	imul   $0xc8,%esi,%eax
+>     2871:	03 43 10             	add    0x10(%ebx),%eax
+>     2874:	89 44 24 04          	mov    %eax,0x4(%esp)
+>     2878:	8b 44 24 24          	mov    0x24(%esp),%eax
+>     287c:	89 04 24             	mov    %eax,(%esp)
+>     287f:	e8 bc 00 00 00       	call   2940 <memcpy>
+>     2884:	c7 44 24 08 c8 00 00 	movl   $0xc8,0x8(%esp)
+>     288b:	00 
+>     288c:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+>     2893:	00 
+>     2894:	69 43 08 c8 00 00 00 	imul   $0xc8,0x8(%ebx),%eax
+>     289b:	03 43 10             	add    0x10(%ebx),%eax
+>     289e:	89 04 24             	mov    %eax,(%esp)
+>     28a1:	e8 ca 00 00 00       	call   2970 <memset>
+>     28a6:	8b 53 08             	mov    0x8(%ebx),%edx
+>     28a9:	83 6b 0c 01          	subl   $0x1,0xc(%ebx)
+>     28ad:	83 c2 01             	add    $0x1,%edx
+>     28b0:	89 d0                	mov    %edx,%eax
+>     28b2:	c1 fa 1f             	sar    $0x1f,%edx
+>     28b5:	f7 3b                	idivl  (%ebx)
+>     28b7:	89 53 08             	mov    %edx,0x8(%ebx)
+>     28ba:	89 f0                	mov    %esi,%eax
+>     28bc:	8b 5c 24 14          	mov    0x14(%esp),%ebx
+>     28c0:	8b 74 24 18          	mov    0x18(%esp),%esi
+>     28c4:	83 c4 1c             	add    $0x1c,%esp
+>     28c7:	c3                   	ret    
+>     28c8:	90                   	nop    
+>     28c9:	8d b4 26 00 00 00 00 	lea    0x0(%esi),%esi
+> 
+> 000028d0 <init_cq_monitor>:
+>     28d0:	83 ec 0c             	sub    $0xc,%esp
+>     28d3:	8b 15 04 30 00 00    	mov    0x3004,%edx
+>     28d9:	8b 44 24 10          	mov    0x10(%esp),%eax
+>     28dd:	81 c2 c0 34 00 00    	add    $0x34c0,%edx
+>     28e3:	c7 00 04 00 00 00    	movl   $0x4,(%eax)
+>     28e9:	c7 40 04 00 00 00 00 	movl   $0x0,0x4(%eax)
+>     28f0:	c7 40 08 00 00 00 00 	movl   $0x0,0x8(%eax)
+>     28f7:	c7 40 0c 00 00 00 00 	movl   $0x0,0xc(%eax)
+>     28fe:	89 50 10             	mov    %edx,0x10(%eax)
+>     2901:	a1 04 30 00 00       	mov    0x3004,%eax
+>     2906:	c7 44 24 08 20 03 00 	movl   $0x320,0x8(%esp)
+>     290d:	00 
+>     290e:	c7 44 24 04 00 00 00 	movl   $0x0,0x4(%esp)
+>     2915:	00 
+>     2916:	0f b6 80 c0 34 00 00 	movzbl 0x34c0(%eax),%eax
+>     291d:	89 04 24             	mov    %eax,(%esp)
+>     2920:	e8 4b 00 00 00       	call   2970 <memset>
+>     2925:	81 05 04 30 00 00 20 	addl   $0x320,0x3004
+>     292c:	03 00 00 
+>     292f:	83 c4 0c             	add    $0xc,%esp
+>     2932:	c3                   	ret    
+2064,2081c2067,2084
+< 00002930 <memcpy>:
+<     2930:	56                   	push   %esi
+<     2931:	53                   	push   %ebx
+<     2932:	8b 4c 24 14          	mov    0x14(%esp),%ecx
+<     2936:	8b 74 24 0c          	mov    0xc(%esp),%esi
+<     293a:	8b 5c 24 10          	mov    0x10(%esp),%ebx
+<     293e:	85 c9                	test   %ecx,%ecx
+<     2940:	74 10                	je     2952 <memcpy+0x22>
+<     2942:	31 d2                	xor    %edx,%edx
+<     2944:	0f b6 04 1a          	movzbl (%edx,%ebx,1),%eax
+<     2948:	88 04 32             	mov    %al,(%edx,%esi,1)
+<     294b:	83 c2 01             	add    $0x1,%edx
+<     294e:	39 ca                	cmp    %ecx,%edx
+<     2950:	75 f2                	jne    2944 <memcpy+0x14>
+<     2952:	89 f0                	mov    %esi,%eax
+<     2954:	5b                   	pop    %ebx
+<     2955:	5e                   	pop    %esi
+<     2956:	c3                   	ret    
+---
+> 00002940 <memcpy>:
+>     2940:	56                   	push   %esi
+>     2941:	53                   	push   %ebx
+>     2942:	8b 4c 24 14          	mov    0x14(%esp),%ecx
+>     2946:	8b 74 24 0c          	mov    0xc(%esp),%esi
+>     294a:	8b 5c 24 10          	mov    0x10(%esp),%ebx
+>     294e:	85 c9                	test   %ecx,%ecx
+>     2950:	74 10                	je     2962 <memcpy+0x22>
+>     2952:	31 d2                	xor    %edx,%edx
+>     2954:	0f b6 04 1a          	movzbl (%edx,%ebx,1),%eax
+>     2958:	88 04 32             	mov    %al,(%edx,%esi,1)
+>     295b:	83 c2 01             	add    $0x1,%edx
+>     295e:	39 ca                	cmp    %ecx,%edx
+>     2960:	75 f2                	jne    2954 <memcpy+0x14>
+>     2962:	89 f0                	mov    %esi,%eax
+>     2964:	5b                   	pop    %ebx
+>     2965:	5e                   	pop    %esi
+>     2966:	c3                   	ret    
+2084,2098c2087,2101
+< 00002960 <memset>:
+<     2960:	53                   	push   %ebx
+<     2961:	8b 4c 24 10          	mov    0x10(%esp),%ecx
+<     2965:	8b 5c 24 08          	mov    0x8(%esp),%ebx
+<     2969:	85 c9                	test   %ecx,%ecx
+<     296b:	74 11                	je     297e <memset+0x1e>
+<     296d:	0f b6 44 24 0c       	movzbl 0xc(%esp),%eax
+<     2972:	89 da                	mov    %ebx,%edx
+<     2974:	88 02                	mov    %al,(%edx)
+<     2976:	83 c2 01             	add    $0x1,%edx
+<     2979:	83 e9 01             	sub    $0x1,%ecx
+<     297c:	75 f6                	jne    2974 <memset+0x14>
+<     297e:	89 d8                	mov    %ebx,%eax
+<     2980:	5b                   	pop    %ebx
+<     2981:	c3                   	ret    
+---
+> 00002970 <memset>:
+>     2970:	53                   	push   %ebx
+>     2971:	8b 4c 24 10          	mov    0x10(%esp),%ecx
+>     2975:	8b 5c 24 08          	mov    0x8(%esp),%ebx
+>     2979:	85 c9                	test   %ecx,%ecx
+>     297b:	74 11                	je     298e <memset+0x1e>
+>     297d:	0f b6 44 24 0c       	movzbl 0xc(%esp),%eax
+>     2982:	89 da                	mov    %ebx,%edx
+>     2984:	88 02                	mov    %al,(%edx)
+>     2986:	83 c2 01             	add    $0x1,%edx
+>     2989:	83 e9 01             	sub    $0x1,%ecx
+>     298c:	75 f6                	jne    2984 <memset+0x14>
+>     298e:	89 d8                	mov    %ebx,%eax
+>     2990:	5b                   	pop    %ebx
+>     2991:	c3                   	ret    

@@ -1,0 +1,123 @@
+/*
+ * Developed at IITB, ERTS LAB
+ * 
+ */
+
+#include <arch/rtl_switch.h>  // Needed for Context Switch
+#include <arch/processor.h>  // Needed for Context Switch
+#include <rtl_conf.h>
+#include <rtl_printf.h>
+#include <arch/kbd.h>
+
+int	iCurrGuestOsIndex = NUM_OF_GUESTOS; 
+unsigned int eta;
+extern char _scheduler_data_;
+unsigned int gCurrEtaCount;
+extern int spark_kbd_data;
+
+/**************************************************/
+
+int init_sched()
+{
+	int i,dummy;
+	unsigned int *ptr = (unsigned int *)&_scheduler_data_; 
+	dummy = *ptr;
+	if( dummy < NUM_OF_GUESTOS )
+		rtl_printf ("***ALERT:: Mismatch in the Number of Guest OSes ****");
+	
+	ptr++;
+	eta = *ptr;
+	for(i=0; i< NUM_OF_GUESTOS; i++ ){
+		ptr++;
+		guestOS_thread[i].iTotalBudget = *ptr;
+		//rtl_printf("Guest OS %d budget %d\n", i, guestOS_thread[i].iTotalBudget);
+	}
+	gCurrEtaCount = eta-1;
+	return 0;
+}
+
+/**************************************************/
+// Currently it is assumed that all the guest OS is 
+// scheduled sequentially, it means that jth guest os
+// will only schedule if all ith (where i<j) guest OS
+// have finished their budget
+
+struct thread_struct * fGetNextGOSToSchedule()
+{
+	int next_gos = (iCurrGuestOsIndex + 1)%NUM_OF_GUESTOS;
+
+	while( next_gos < NUM_OF_GUESTOS )
+	{
+		if ( guestOS_thread[next_gos].iBudgetRemaining > 0 )
+			return &guestOS_thread[next_gos];
+		else
+			next_gos++; 
+	}
+	return NULL;
+}
+/**************************************************/
+
+int spark_switch_to(struct thread_struct *next_gos)
+{
+	//int *ptr;
+	struct thread_struct *prev_gos = &guestOS_thread[iCurrGuestOsIndex];
+	iCurrGuestOsIndex = next_gos->iGOSNumber;
+	fLoadNewMemContext(next_gos);
+	(*(next_gos->pllRealTime)) = _i8254_clock.value;
+	rtl_switch_to(prev_gos, next_gos);
+
+	if (kbd_guest_os == iCurrGuestOsIndex)
+        {
+		*kbd_data_gos = spark_kbd_data;
+        }
+
+
+	return 0;
+}
+/**************************************************/
+
+int spark_schedule(void)
+{
+	struct thread_struct *next_GOS_to_sched = NULL;
+	int i;
+
+	if(gCurrEtaCount >= eta) {
+		gCurrEtaCount = 0;
+		//replenish all budgets
+		for(i=0; i< NUM_OF_GUESTOS; i++ ) {
+			guestOS_thread[i].iBudgetRemaining = guestOS_thread[i].iTotalBudget;
+		}
+		for(i=0; i< NUM_OF_GUESTOS; i++ ) {
+			if( guestOS_thread[i].iTotalBudget > 0) {
+				next_GOS_to_sched = &guestOS_thread[i];
+				guestOS_thread[i].iBudgetRemaining--;
+				break;
+			}
+		}
+	}
+	else
+	{
+		if ( guestOS_thread[iCurrGuestOsIndex].iBudgetRemaining > 0)
+		{
+			guestOS_thread[iCurrGuestOsIndex].iBudgetRemaining--;
+			return 0;
+		}
+		else {
+			next_GOS_to_sched = fGetNextGOSToSchedule();
+			if(next_GOS_to_sched)
+				next_GOS_to_sched->iBudgetRemaining--;
+		}
+	}
+
+	if( next_GOS_to_sched == NULL ){
+		if(iCurrGuestOsIndex ==  NUM_OF_GUESTOS)
+			return -1;
+		else
+			next_GOS_to_sched = &guestOS_thread[NUM_OF_GUESTOS];
+	}
+
+	spark_switch_to(next_GOS_to_sched);
+
+	return 0;
+}
+
