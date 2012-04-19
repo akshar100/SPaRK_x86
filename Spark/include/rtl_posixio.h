@@ -8,6 +8,10 @@
 #ifndef __RTL_POSIXIO_H__
 #define __RTL_POSIXIO_H__
 
+#define __builtin_va_end(p)
+#define __builtin_stdarg_start(a,b)
+#define __builtin_va_arg(a,p) 0
+
 #include <rtl_conf.h>
 #include <sys/types.h>
 #include <stdio.h>

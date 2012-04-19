@@ -61,6 +61,7 @@ WARNING_FLAGS = -Wno-uninitialized
 CFLAGS += $(WARNING_FLAGS) -O2 -D__KERNEL__ -nostdinc -fno-builtin $(INCLUDE_DIRS)
 
 CFLAGS += -fomit-frame-pointer
+CFLAGS += -fno-stack-protector
 
 CC		= ${CROSS_COMPILE}gcc
 HOSTCC		= gcc
