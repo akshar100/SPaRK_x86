@@ -1,0 +1,36 @@
+SParK version 0.9-1
+Date : 12th Aug 2008
+
+This version of SParK comes with following features:
+- Temporal Guarantees
+- Spatial Guarantees
+- InterPartition Communication
+- InterTask Communication
+- PCI Driver
+- Printer Driver
+
+Setup 1 : Basic Application
+
+Functionality:
+
+The setup demonstrates handling of Digital/ Analog inputs and outputs through SParK. The system contains three partitions, each of which has a GOS running on it. The tasks within each partition are as explained below:
+Partition 1 :
+	Contains 1 task which has a period of 1 second and prints "Guest 1: Task1" once in its each invocation.
+Partition 2 :
+	Contains 1 task which has a period of 2 second and prints "Guest 2: Task1" once in its each invocation.
+Partition 3 :
+	Contains 1 task which has a period of 3 second and prints "Guest 3: Task1" once in its each invocation.
+
+
+Hardware Requirements:
+
+Processor: Intel 386 and higher
+RAM: Atleast 128K for 3 guest OSs (32K for SPArK and 32K each for every guest OS)
+Timer Chip: 8254 Timer
+PIC: 2 PICs like IBM PC motherboards, 8254 timer pin connected IRQ0, serial pin connected to IRQ4 etc. 
+
+
+Software Requirements:
+
+For running this demo, user needs to install SParK. For installation instructions refer 'SParK User Manual Version 1.'
+For adding extra tasks to this demo refer 'Application Development Guide Version 1'
